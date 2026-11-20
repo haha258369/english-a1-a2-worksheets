@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -264,6 +264,7 @@ body.gv.showans .ans:empty,body.open.showans .ans:empty{display:none}
 
 /* ---- loại câu mới: fill · match · back + ảnh/âm thanh trong câu ---- */
 .qimg{display:block;max-width:100%;max-height:260px;margin:8px 0 4px;border-radius:12px;border:1.5px solid var(--line,#ddd);background:#fff}
+.eg{margin:6px 0 8px;padding:7px 12px;border-left:4px solid var(--g);background:var(--gl,#E7F2F0);border-radius:0 8px 8px 0;font:500 14px/1.45 var(--f-body)}.eg .egl{font:800 11px var(--f-body);letter-spacing:1px;text-transform:uppercase;margin-right:8px;color:var(--g)}
 .qaud{margin:8px 0 4px}.qaud audio{width:100%;max-width:520px;height:42px}
 .fill .bank{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.fill .bank span{background:var(--yl);border:1.5px solid var(--y);border-radius:999px;padding:3px 12px;font-weight:700}
 .fill .ftpl{line-height:2.6;font-size:17px}.fill .fi{display:inline-block;width:auto;min-width:5.5em;margin:0 3px;padding:4px 8px;text-align:center;font-size:17px}
@@ -286,6 +287,16 @@ body.gv.showans .ans:empty,body.open.showans .ans:empty{display:none}
   .hero .tt{padding-left:min(44%,380px)}
   .hero h1{font-size:clamp(40px,4.6vw,60px)}
 }
+
+/* ---------- BẢN GV (…/gv/): hướng dẫn dạy + ghi chú từng câu, chỉ hiện khi đã mở khóa GV ---------- */
+.gvnote{display:none;margin:0 0 14px;padding:12px 16px;border-radius:12px;background:#fff6e0;border-left:5px solid #d99b26;font-size:14.5px}
+body.gv .gvnote:not(:empty){display:block}
+.gvnote>b:first-child{display:block;font:800 11px var(--f-body);letter-spacing:1.5px;text-transform:uppercase;color:#8a5a00;margin-bottom:4px}
+.gvnote ul{margin:4px 0;padding-left:18px}
+.tnote{margin-top:8px;padding-top:6px;border-top:1px dashed #b9cfb2;font-size:13.5px;color:#5a4a1a}
+.tnote b{font:800 10.5px var(--f-body);letter-spacing:1.4px;text-transform:uppercase;color:#8a5a00;margin-right:6px}
+body.gvpage .hero .kick{background:#d99b26;color:#3a2700}
+@media print{.gvnote:not(:empty){display:block!important;break-inside:avoid;font-size:9.5pt;background:none;border-left:3px solid #8a5a00;padding:2mm 3mm}.tnote{font-size:9pt}}
 :root{--paper:#FFF9F3;--ink:#1C2640;--ink2:#454d62;--mute:#727889;--line:#dbd7d6;--g:#22508F;--gl:#e2e8f0;--gb:#c1cee0;--y:#F07B4F;--yl:#fce7df;--yb:#f8c4b0;--yd:#8b472e;--yt:#c56541;--r:#B53D78;--rl:#f4e2eb;--rb:#e5bbd0;--bg:#0d111d;--cine:#070a10;--sh:28,38,64;}</style>
 </head>
 <body>
@@ -293,15 +304,15 @@ body.gv.showans .ans:empty,body.open.showans .ans:empty{display:none}
   <img class="bgi" src="img/ref-characters.jpg" alt="">
   <div class="wrap">
     <div class="tt"><div class="kick">REVIEW · 5 PARTS</div><h1>Lesson 11 · Skills &amp; Reasons</h1><div class="au">Review worksheet</div><div class="meta">English A1 → A2 · after class</div></div>
-    <div class="qrbox"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 410 410" class="segno"><g transform="scale(10)"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1c2640" d="M2 2.5h7m4 0h1m3 0h4m1 0h2m2 0h1m3 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h3m2 0h1m1 0h2m4 0h2m1 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h1m4 0h3m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m4 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h2m2 0h2m2 0h1m2 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m2 0h4m1 0h1m3 0h1m3 0h2m2 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h3m6 0h1m5 0h2m-28 1h1m1 0h5m4 0h3m1 0h1m2 0h5m1 0h3m3 0h5m-35 1h1m1 0h4m1 0h4m2 0h4m7 0h1m1 0h1m1 0h2m1 0h1m2 0h2m-36 1h2m3 0h5m2 0h2m3 0h2m1 0h1m1 0h1m2 0h4m2 0h1m2 0h3m-36 1h1m2 0h1m3 0h3m3 0h1m1 0h1m4 0h1m1 0h1m4 0h1m1 0h2m4 0h1m-36 1h2m3 0h2m1 0h1m2 0h1m1 0h1m1 0h2m4 0h2m1 0h1m2 0h3m1 0h1m1 0h3m-36 1h1m2 0h2m3 0h1m3 0h1m3 0h5m1 0h1m2 0h1m4 0h1m-32 1h1m4 0h3m1 0h1m1 0h1m2 0h4m2 0h2m2 0h2m1 0h7m1 0h2m-35 1h4m2 0h2m2 0h1m2 0h1m1 0h6m1 0h1m1 0h3m1 0h3m2 0h1m-35 1h3m2 0h3m1 0h1m2 0h4m4 0h1m1 0h5m1 0h2m1 0h1m1 0h3m-28 1h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h1m-36 1h5m1 0h2m1 0h5m1 0h2m1 0h2m1 0h1m5 0h2m1 0h2m1 0h4m-36 1h5m1 0h1m3 0h3m1 0h1m2 0h5m1 0h1m1 0h2m1 0h3m4 0h1m-37 1h2m1 0h5m3 0h3m1 0h1m1 0h3m2 0h1m1 0h2m1 0h4m1 0h3m-35 1h3m2 0h1m4 0h2m4 0h1m1 0h3m2 0h1m9 0h1m1 0h1m-36 1h1m1 0h1m3 0h1m1 0h1m2 0h3m1 0h2m1 0h1m3 0h1m1 0h2m1 0h1m2 0h4m1 0h2m-37 1h2m5 0h1m2 0h3m1 0h3m2 0h2m5 0h1m2 0h1m1 0h2m2 0h2m-37 1h4m2 0h2m1 0h1m3 0h1m4 0h5m2 0h4m1 0h1m1 0h1m1 0h2m-36 1h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h4m5 0h3m5 0h1m1 0h2m-35 1h1m1 0h1m2 0h3m3 0h2m7 0h1m1 0h1m2 0h4m5 0h3m-37 1h1m1 0h3m5 0h5m1 0h1m4 0h2m1 0h1m2 0h1m2 0h1m1 0h1m-33 1h1m1 0h2m2 0h2m5 0h1m3 0h1m7 0h8m1 0h1m1 0h1m-29 1h1m1 0h2m2 0h1m2 0h5m1 0h1m1 0h1m2 0h1m3 0h2m-34 1h7m3 0h1m1 0h1m2 0h3m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m2 0h2m1 0h2m1 0h3m1 0h1m1 0h3m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h2m5 0h2m4 0h1m1 0h1m1 0h8m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m1 0h3m4 0h2m1 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h2m1 0h2m2 0h1m1 0h4m6 0h3m-37 1h1m5 0h1m4 0h2m1 0h2m3 0h5m2 0h4m2 0h1m3 0h1m-37 1h7m1 0h2m2 0h8m2 0h5m2 0h1m2 0h5"/></g></svg><small>Scan to do it online</small></div>
+    <div class="qrbox"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 410 410" class="segno"><g transform="scale(10)"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1c2640" d="M2 2.5h7m4 0h1m3 0h4m1 0h2m2 0h1m3 0h1m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h3m2 0h1m1 0h2m4 0h2m1 0h1m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h1m4 0h3m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m4 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h2m2 0h2m2 0h1m2 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h3m2 0h4m1 0h1m3 0h1m3 0h2m2 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h3m6 0h1m5 0h2m-28 1h1m1 0h5m4 0h3m1 0h1m2 0h5m1 0h3m3 0h5m-35 1h1m1 0h4m1 0h4m2 0h4m7 0h1m1 0h1m1 0h2m1 0h1m2 0h2m-36 1h2m3 0h5m2 0h2m3 0h2m1 0h1m1 0h1m2 0h4m2 0h1m2 0h3m-36 1h1m2 0h1m3 0h3m3 0h1m1 0h1m4 0h1m1 0h1m4 0h1m1 0h2m4 0h1m-36 1h2m3 0h2m1 0h1m2 0h1m1 0h1m1 0h2m4 0h2m1 0h1m2 0h3m1 0h1m1 0h3m-36 1h1m2 0h2m3 0h1m3 0h1m3 0h5m1 0h1m2 0h1m4 0h1m-32 1h1m4 0h3m1 0h1m1 0h1m2 0h4m2 0h2m2 0h2m1 0h7m1 0h2m-35 1h4m2 0h2m2 0h1m2 0h1m1 0h6m1 0h1m1 0h3m1 0h3m2 0h1m-35 1h3m2 0h3m1 0h1m2 0h4m4 0h1m1 0h5m1 0h2m1 0h1m1 0h3m-28 1h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h1m-36 1h5m1 0h2m1 0h5m1 0h2m1 0h2m1 0h1m5 0h2m1 0h2m1 0h4m-36 1h5m1 0h1m3 0h3m1 0h1m2 0h5m1 0h1m1 0h2m1 0h3m4 0h1m-37 1h2m1 0h5m3 0h3m1 0h1m1 0h3m2 0h1m1 0h2m1 0h4m1 0h3m-35 1h3m2 0h1m4 0h2m4 0h1m1 0h3m2 0h1m9 0h1m1 0h1m-36 1h1m1 0h1m3 0h1m1 0h1m2 0h3m1 0h2m1 0h1m3 0h1m1 0h2m1 0h1m2 0h4m1 0h2m-37 1h2m5 0h1m2 0h3m1 0h3m2 0h2m5 0h1m2 0h1m1 0h2m2 0h2m-37 1h4m2 0h2m1 0h1m3 0h1m4 0h5m2 0h4m1 0h1m1 0h1m1 0h2m-36 1h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h4m5 0h3m5 0h1m1 0h2m-35 1h1m1 0h1m2 0h3m3 0h2m7 0h1m1 0h1m2 0h4m5 0h3m-37 1h1m1 0h3m5 0h5m1 0h1m4 0h2m1 0h1m2 0h1m2 0h1m1 0h1m-33 1h1m1 0h2m2 0h2m5 0h1m3 0h1m7 0h8m1 0h1m1 0h1m-29 1h1m1 0h2m2 0h1m2 0h5m1 0h1m1 0h1m2 0h1m3 0h2m-34 1h7m3 0h1m1 0h1m2 0h3m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m2 0h2m1 0h2m1 0h3m1 0h1m1 0h3m3 0h2m-34 1h1m1 0h3m1 0h1m1 0h2m5 0h2m4 0h1m1 0h1m1 0h8m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m1 0h3m4 0h2m1 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h2m1 0h2m2 0h1m1 0h4m6 0h3m-37 1h1m5 0h1m4 0h2m1 0h2m3 0h5m2 0h4m2 0h1m3 0h1m-37 1h7m1 0h2m2 0h8m2 0h5m2 0h1m2 0h5"/></g></svg><small>Quét để làm online</small></div>
   </div>
 </header>
 <div class="mode"><div class="wrap" id="modeBar"></div></div>
 <div class="wrap info">
   <div class="card">
-    <div><label for="fN">Full name</label><input class="inp" id="fN" autocomplete="off" placeholder="Your name"></div>
-    <div><label for="fL">Class</label><input class="inp" id="fL" placeholder="12A1"></div>
-    <div><label for="fG">Team</label><input class="inp" id="fG" list="teams" placeholder="Team …"><datalist id="teams"></datalist></div>
+    <div><label for="fN">Họ và tên</label><input class="inp" id="fN" autocomplete="off" placeholder="Nguyễn Văn A"></div>
+    <div><label for="fL">Lớp</label><input class="inp" id="fL" placeholder="12A1"></div>
+    <div><label for="fG">Nhóm / Đội</label><input class="inp" id="fG" list="teams" placeholder="Đội …"><datalist id="teams"></datalist></div>
   </div>
   <p class="intro">Do this after the lesson. Listen, choose, write and speak. Your answers save on this phone. When you finish, tap <b>Submit</b> and send the link to your teacher.</p>
 </div>
@@ -309,49 +320,49 @@ body.gv.showans .ans:empty,body.open.showans .ans:empty{display:none}
 <main class="wrap" id="app"></main>
 <div class="wrap actions">
   <div class="card">
-    <h3>Worksheet complete</h3>
-    <p data-stud>Your answers save on this phone. Tap <b>Submit</b> to get a result link and send it to your teacher.</p>
+    <h3>Hoàn thành worksheet</h3>
+    <p data-stud>Bài làm tự lưu trên máy này. Bấm <b>Nộp bài</b> để tạo link kết quả và gửi cho thầy cô.</p>
     <div class="row">
-      <button class="b p" data-do="send" data-stud>Submit · get your result link</button>
-      <button class="b" data-do="a4">Print / PDF · A4</button>
+      <button class="b p" data-do="send" data-stud>Nộp bài · tạo link kết quả</button>
+      <button class="b" data-do="a4">In / lưu PDF · A4</button>
       <button class="b" data-do="a5">In · A5</button>
-      <button class="b sm" data-do="reset" data-stud style="background:none;color:var(--mute)">Start again</button>
+      <button class="b sm" data-do="reset" data-stud style="background:none;color:var(--mute)">Làm lại từ đầu</button>
     </div>
   </div>
 </div>
-<footer class="foot">Lesson 11 · Skills &amp; Reasons · English for Everyone Level 1, Units 44–46 <span class="ponly">Online: https://haha258369.github.io/english-a1-a2-worksheets/a1/lesson11/</span></footer>
+<footer class="foot">Lesson 11 · Skills &amp; Reasons · English for Everyone Level 1, Units 44–46 <span class="ponly">Làm online: https://haha258369.github.io/english-a1-a2-worksheets/a1/lesson11/</span></footer>
 
 <div class="modal" id="mSend"><div class="card">
-  <button class="x" aria-label="Close">×</button>
-  <h3>Send your result to your teacher</h3>
-  <p style="margin:0 0 8px;font-size:14px">This is your <b>result link</b> with all your answers. Copy it and send it to your teacher (Zalo, Messenger, email).</p>
+  <button class="x" aria-label="Đóng">×</button>
+  <h3>Gửi kết quả cho thầy cô</h3>
+  <p style="margin:0 0 8px;font-size:14px">Đây là <b>link kết quả</b> chứa toàn bộ bài làm của em. Sao chép rồi gửi qua Zalo / Messenger / Google Classroom / email cho thầy cô.</p>
   <p class="warn" id="sWarn"></p>
   <textarea id="sLink" readonly onclick="this.select()"></textarea>
   <div class="row" style="justify-content:flex-start;margin-top:10px">
-    <button class="b p" data-do="copy">Copy link</button>
-    <button class="b y" data-do="share" id="bShare">Share…</button>
-    <button class="b" data-do="mail">Email</button>
-    <button class="b" data-do="qr">Show QR code</button>
+    <button class="b p" data-do="copy">Sao chép link</button>
+    <button class="b y" data-do="share" id="bShare">Chia sẻ…</button>
+    <button class="b" data-do="mail">Gửi email</button>
+    <button class="b" data-do="qr">Hiện mã QR</button>
   </div>
   <div id="qrOut"></div>
-  <p style="font-size:12px;color:var(--mute);margin:10px 0 0">Your answers are inside the link (after #), not on a server. Changed something? Submit again for a new link.</p>
+  <p style="font-size:12px;color:var(--mute);margin:10px 0 0">Dữ liệu nằm sau dấu # của link, không lưu trên máy chủ nào. Sửa bài xong thì bấm Nộp bài lại để có link mới.</p>
 </div></div>
 
 <div class="modal" id="mSum"><div class="card" style="width:min(980px,100%)">
-  <button class="x" aria-label="Close">×</button>
-  <h3>Collect results</h3>
-  <p style="margin:0 0 8px;font-size:14px">Paste the result links here (a whole chat message is OK – links are found automatically).</p>
+  <button class="x" aria-label="Đóng">×</button>
+  <h3>Tổng hợp bài nộp</h3>
+  <p style="margin:0 0 8px;font-size:14px">Dán vào đây các link kết quả HS gửi (dán cả đoạn tin nhắn Zalo cũng được – máy tự lọc link).</p>
   <textarea id="sumIn" placeholder="https://…#r=z…"></textarea>
-  <div class="row" style="justify-content:flex-start;margin-top:10px"><button class="b p" data-do="read">Read &amp; score</button><button class="b" data-do="csv" id="bCsv" style="display:none">Download scores (.csv)</button></div>
+  <div class="row" style="justify-content:flex-start;margin-top:10px"><button class="b p" data-do="read">Đọc &amp; chấm</button><button class="b" data-do="csv" id="bCsv" style="display:none">Tải bảng điểm (.csv)</button></div>
   <div id="sumOut"></div>
 </div></div>
 <div class="toast" id="toast"></div>
 
 <script id="wsdef" type="application/json">{"id": "a1-l11", "title": "Lesson 11 · Skills &amp; Reasons", "url": "https://haha258369.github.io/english-a1-a2-worksheets/a1/lesson11/", "teams": ["LAB", "IT"], "parts": [{"id": "p1", "short": "Listen", "title": "Listen: Sheila and Mark", "meta": "Part 1 · English for Everyone 44.11 · 5 minutes", "intro": "Mark has a big dinner this weekend. Listen and answer.<span style=\"display:block;margin:8px 0\"><b>Audio 44.11<\/b><br><audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b1/c/44/b1_c_44_11_uk.mp3\" style=\"width:100%\"><\/audio><\/span>", "items": [{"id": "l1", "type": "choice", "q": "Why is Mark unhappy?", "opts": ["He can’t cook.", "He doesn’t know what to make for a big dinner.", "He is sick."]}, {"id": "l2", "type": "choice", "q": "What can Sheila make?", "opts": ["a good salad", "a roast chicken", "a great apple pie", "a fish dish"], "multi": true}, {"id": "l3", "type": "choice", "q": "Sheila doesn’t eat meat.", "opts": ["True", "False"]}, {"id": "l4", "type": "text", "q": "Complete: “I don’t know how to cook fish, ___ I can cook a good roast chicken.”", "ph": "one word"}, {"id": "l5", "type": "text", "q": "What does Mark ask Sheila to bring?", "ph": "a short answer"}]}, {"id": "p2", "short": "How well", "title": "How well? good at · not good at · very well", "meta": "Part 2 · English for Everyone 45.13 · 46.4 · 8 minutes", "intro": "<b>Audio 45.13:<\/b> a speaker says what she and he are good at and bad at. <b>Audio 46.4:<\/b> the same idea with <i>quite / very / really<\/i>. Listen, then answer.<span style=\"display:block;margin:8px 0\"><b>Audio 45.13 · good at / bad at<\/b><br><audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b1/c/45/b1_c_45_13_a_us.mp3\" style=\"width:100%\"><\/audio><\/span><span style=\"display:block;margin:8px 0\"><b>Audio 46.4 · quite / very / really good at<\/b><br><audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b1/c/46/b1_c_46_4_us.mp3\" style=\"width:100%\"><\/audio><\/span>", "items": [{"id": "h1", "type": "choice", "q": "Audio 45.13: which three activities do you hear?", "opts": ["cooking", "playing soccer", "history", "swimming"], "multi": true}, {"id": "h2", "type": "choice", "q": "Audio 45.13: “He is bad at history.” means …", "opts": ["He is not good at history.", "He is very good at history.", "He is not interested in history."]}, {"id": "h3", "type": "text", "q": "After “good at” use a gerund. Complete: “He is good at ______ soccer.” (play)", "ph": "one word"}, {"id": "h4", "type": "text", "q": "Audio 46.4: “She can play golf quite well.” = “She’s quite ______ ______ playing golf.”", "ph": "two words"}, {"id": "h5", "type": "choice", "q": "Audio 46.4: which sentence is NOT in the audio?", "opts": ["You’re very good at playing golf.", "You’re really good at playing golf.", "You’re not really good at playing golf."]}, {"id": "h6", "type": "choice", "q": "Make it negative: “I’m good at cooking.” → “I’m ______ good at cooking.”", "opts": ["not", "no", "don’t"]}, {"id": "h7", "type": "sort", "q": "Put each sentence on the scale.", "bins": ["bad at / not good at", "not really good at", "quite good at", "very / really good at"], "chips": ["I’m bad at cooking.", "I’m not good at singing.", "He is not really good at reading maps.", "She’s quite good at playing golf.", "You’re really good at playing golf.", "He is very good at history."]}, {"id": "h8", "type": "text", "q": "Write 2 sentences about YOU: one with “not good at” or “not really good at”, one with “very good at” or “quite good at”.", "ph": "I’m not (really) good at … I’m (very) good at …"}]}, {"id": "p3", "short": "Adverbs", "title": "Adverbs · very or absolutely?", "meta": "Part 3 · 5 minutes", "items": [{"id": "a1", "type": "text", "q": "careful → She labels the tubes ______.", "ph": "adverb"}, {"id": "a2", "type": "text", "q": "good → He writes Java ______.", "ph": "adverb"}, {"id": "a3", "type": "text", "q": "fast → She debugs ______.", "ph": "adverb"}, {"id": "a4", "type": "sort", "q": "very ___ or absolutely ___ ?", "bins": ["very ___", "absolutely ___"], "chips": ["busy", "perfect", "tired", "exhausted", "difficult", "impossible", "slow", "freezing"]}, {"id": "a5", "type": "text", "q": "Make it softer for work: “The system never crashes.”", "ph": "almost / usually…"}]}, {"id": "p4", "short": "Reasons", "title": "Reasons · because · so · but", "meta": "Part 4 · 5 minutes", "items": [{"id": "r1", "type": "text", "q": "Join with BECAUSE: The result is late. The sample is hemolyzed.", "ph": "one sentence"}, {"id": "r2", "type": "text", "q": "Join with SO: The query is heavy. The page is slow.", "ph": "one sentence"}, {"id": "r3", "type": "choice", "q": "Which sentence is correct?", "opts": ["Because the server is down, so I can’t log in.", "The server is down, so I can’t log in.", "The server is down because so I can’t log in."]}, {"id": "r4", "type": "text", "q": "Answer: “Can you use Kubernetes?” (use yet + but)", "ph": "No, I…"}]}, {"id": "p5", "short": "Interview", "title": "Interview answer · 60–90 words", "meta": "Part 5 · write, then record yourself · 10 minutes", "intro": "Answer the interviewer: <i>“Tell me about your skills. What can you do well? What can’t you do yet? Why?”<\/i>", "items": [{"id": "w1", "type": "long", "q": "Write your answer (your real job).", "rows": 6, "lines": 8, "words": "60,90"}, {"id": "w2", "type": "check", "q": "Check your answer:", "list": ["≥ 6 sentences with can / can’t", "≥ 4 adverbs (well, quickly, carefully…)", "≥ 3 because / so / but", "no “very perfect” / no “Because…, so…”", "I recorded it (90 seconds)"], "pass_": 4, "medal": "Interview ready"}]}]}</script>
-<script id="wskey" type="text/plain">OW09yZzWQMg8U47oZeW-uSDvb2mqv1m_PJgsLNqj7CB7nGwwE_JkS5DDlRxjUGcb3jNsLYW9uUWCCDbZtnTHPSDA042YCpQ5iOX15PaDvSiq4CT8y774OzzbozKT-blwOq4z7jJIox2L5NmkUri1OyPzTCAfHnr7ClqmWxyUo-wUF_8mj47GYvXjxG4PYuOMz12Qjyhvhd2m2rjUMsLMU18TsAnUfWJzvakoyCg8BUCz8TSLloyu1VqKqwUIgqJsFQthu7TtF405CWXGInopc2ByJiKE-2YTYFISLjPqBeojDLu990Wp3PQPIKvmM0GRXKw3qibp5xVA5Qg6U1Kusb6a0OWdZ7HAxdb-qiOH2NrAUj-CByZVbJR1vlmmu0BpRe7AIdKduCU0bb_0EKU2FNwsIjhFR4qxFFfVn2kCaGI06tWk7SxHmY8WkISkOIALzsQKDVx57Gkv7zktAd_4Z0e46_lhJRBm7qaZX8Kb_8JFEJhimslOQbmwVmgaYISn7y9waDPomCMP1N9aF23apu5PbetKJD7pXxQ2wFGWJmQ2W_cSyGA456QzFWK2ViUF1TzPoGY8anRsBKVNVyxDBarTuWyKdFyq8EJiRpOTaNbgqSJDI5SalA02_GQE_EJ28DCXTaOEuqJfLipbjnlN3fUQnTFQJ6x-PhRvQL-Vo8QqsIRAcqZBHdq2A8bB9AwuE55CMfH31lX7rOgoUhdZnoKsCprl8DL-LkALTSe30rSMNNEHi_Wm2XFgszGDflt46lLHeKaLfivE6SlVtqrAclaqmA_FsvjEPv5D75K0_HqN_3eBi2O-DxdHAXzHgkC3HHe5Zbwih-eNc2YVIQwt-zkZb-tZrSK33ay7uB11kHhnytFSpLzKAgBw3Yok5maa2yYqtscVWNAo4STd7zUtku3FSmXekH1SHeSNqfDJtnv1-NHKq7I9HPi-gVIFkN9QUo3vmGp5ZE-OzCH07nc0i1RgzOF3zgh-iAPOMeuICzbKK4NDrc15uD76OGnh1fH_WxPZEKPgQnypbtioci_GQrxlct0naMJBwtetfg2TVPm_hTx5idY_xhFTw2qM_n2JXq6n9wkrgH8mGPi_gkXR4m21ndlf316S6HHW3ETw3Bq-ryHJKoXlTIxoh1q5PhzYdoJ2aHlVbS11Ilg26lRLixknUEMVWINlayoanaxJeJkNarbNvbeCIK9TKU50iljYRcEeBbMTY2sIXch5wUFP6mhJHcGO5zA0-EDgp6Irttw9ZioIy_JQ-MbRloVvvJC-Gy6m09_k6d9N8Ud6fu69dZni0xKLwNqbbsaD42B8jLLTE60uo4HclEBZ_GWxr6Gp8igmkNDyID_NAKbRvePHTNSmaUViAva1TVFnGQMBeNTaZbWKk8dQB_5Rnk8rL-CvcQaaNWN4sbWVYGkpyTD_d5X8JzCB0BpYLAhLGi2vRzI_aXVt3wz2PtRgN-El2Gmz489ZvPw53U_xuB1V8I_atX3B51c2G33XpZk0y9xewzJGdH8MIxJr7xwxfAM4_tmOhuZTzJ4S1_gtK3nA955B5U7X-SCJsiDZ96EIzSagP55HqL0F9L2NKC_LKK64GldLyR0JF0ZW8r5Xn42FcM8_DdbCIvS44rydlJW_cabOkwpnBK6LFjcclp76OA78qygcJ3EsMxt16VNyfqJLnPeUgiEdNFKEw4R35ck7KfZp_mdTjCs7C7RXlIOyn4YgsWBk4zcOx8atqMLBb_3OZdaPFHlDuOXd12D7rI5f5BrM-FfDI9i_nV8BUdA8F3BfJHLKd7ad_z2aHVJxUzIPLITmpuphfP07A-zhZAGWQCK8bBYIpO5_vmczGZQhGSJWkvckm0TG62lMsFVtzADYJrQiOHhG1u2EDchAjVxq3lgbOgcvOYFStyeaUerewnXK2IiwV9nLqv9aKVFiiITQVAwba4rOGIehJOIsAZr6B5ETm-KsFfuw2kXQi0g6oclBayDXFz9-cNkSD4xHyNTU3pRrA1WNama1YBTb0eLim8E</script>
+<script id="wskey" type="text/plain">GYDf7J9Jz7TYghyyS-u7-UK1u-HLzjSe9wZ83793MiS_Ii2JZDcJ9-Sf_bDCbEBF6tmsOjG6N4GG9dXB-NTGR1xEJxH6ztoYbNI1Z5qQqCmHuMhTi40Gdng7qdbpWbRdLgZdFZ8gZsqeeXXNw3d0PlpENkUMyszxitrcApG8exB2MiFtagM_QnXXWIaaN0ZZHBfHw4VrlSKMor8bqgADM5IlGLwQ9btFs9TaOCqm-tmdnOpqDaHvBEHaOYseC449CWiAILDWFuMRpPjzjjqoVwjOJrghzCGelp-gRokF5JQU1a22mZ1QaypxDsKLD40OKWflpxwT4jpg6iMugHEZmhhCMRy4aeiAnfo5W4wlc_4M_LMriLwVOe4oG0OYdX0SiQ34t9L6Y04tXlzaTGhvaTzo1Ats3Nju8Y7_F_XQNJYpoPL1--K9DGzwXjcGWD-kGjTaNDn0B6zZSFG0BWXay1ouQjLCQC8_VRHhFZnFJBPc7fdXOeVJYVn8r-vTtQAFxrU-MPHoZpnxWztzkwIKd_FxE_0XNr8wuSqIY0vY9CFh73sohBq8SXdXaMGRblYHFpnP4Jt8alFfmPw5uLDycL70mxomOri5nEkmcmQ0jSzXjFTigGIZJKPflLP7IXCTyD-pXB80TZDgngW1XRs1sFVScqdsj0ED1OMS091q8B5lxe_LQ6dHb9x3wD1loVF2YYPy6h8JcHsZO1HCFWsvCCxrfv_UNVsb9jvFBuHWS6PX0sZvxc34LhJ8Sq5YMU0IEO1nifU6ZXQ6mHs_Pd6x0FH7pTpXyJRuJdS2n-ctkYxOnXuNG1tSzGvgfKxWGYMhqyacPDin3RFD7CmEcteFnnaTCsjXT4OnUQBklG-BrJkcPOKoSzg1Tphgq2hDcNm9zG7_4QrkTJdUu3SuUQk5h2bcpGRT0D-VjWhvYf91CA9rkIDt8emb5PP6_KmbUiM-516O_R0CAORQO-q9rAwBJDFhTYBzy0s3WqzRsdsrC5U9TAQK6alK1SajCNsWywmK1I4iAsbUp2BuDSEP3B-2DL-JbMuEeABLnLyiZqFiQ3HRNJJ7z4VXIp1szBow8nDzbQU5OHPEQFFLZUDiHToK5_wNGSfDCv3bSuIf4IcvjT19yz5Ig7du_ROBYxd3d9PKQmlIsfe0RNuwOXItWoAatLH2Wj4mxncMrq4mdz7dNboYBvgEkHkNYjc6PgtTJUmTzfukj6Efce__wNAkzAJ4gbnsxP1JKRvndtglC21q144km_-lJwemry5-r347lIwwAeMaErZFjeZ3_g4uDYmrrU7_qkYANeFkG-CH1c8J7WQsMi0CUpFNlnmnIa1pSIV_YU8tevgHiuJfFNpZhUksaba0M_hFaE6ij1Syp5ZAbTTm9z9RQx-UbWXkH0nPope84s2pURtnLNASQ8-YSJNGh264deyTvf7ihT-GbTW6P97mlaompvgTMxZrDgNkU1aIYvvjxKelnIRl1SdsVfY_pc9hkIpHr0DIZuX2LPkqvbb6OXXcnVuPjNe6fHC6eKHJ_urPMPuEd2FPUmdSsQm6m-xMwePnd-yGK1mYrnSqlT1dzmyyss2v5NyQOd2X9mQQETim02EOYkUUiE-c0u6ixVdbGNJZwDPXfJdNgCfXmiUAcHlnq4yhyg-puQSGOwzcVMN0jFf1B3WIM8Aq_RzGyM8h5DTIR2Z-B22w_gceYmP04Pi4Zzx-Vjq6NDq_0AE-Bn_YH5YV9YntPEu87zvnhnuJDxXuSrKaksQ2gLkybzt9PvLIBiRbqePA1YYTU-EaFncDpGjtKYhuP7ENc8th4mhudpuYhpMluhg1rUB1AtCn8-YpSB51OZ9MAUkR6gwKltuCJhbGJNv4TXG7eDLWS8L96xzud-EBqLdPlL824BwaasVa8_OWTMHW7yn0prSvWF3KRxaDIJo-S2CmqrEDqIC7OQC66pCOIbp--DUW-5HyvDbWBQe975AUr_oaxO5S5XWjcqE7-pkgu617rK-lK1NmhkEk8amT6NTVlvM</script>
 <script>/* Worksheet tương tác – skill cinematic-lesson-html.
-   HS: làm bài (tự lưu trên máy) → "Submit" tạo LINK KẾT QUẢ (dữ liệu nằm sau dấu #, không gửi lên máy chủ) → gửi GV.
-   GV: mở link có #gv=<khóa> một lần → giải mã đáp án (AES-GCM) · bản "open": đáp án không mã hóa, HS thấy luôn → xem đáp án, tự chấm result link, tổng hợp cả lớp.
+   HS: làm bài (tự lưu trên máy) → "Nộp bài" tạo LINK KẾT QUẢ (dữ liệu nằm sau dấu #, không gửi lên máy chủ) → gửi GV.
+   GV: mở link có #gv=<khóa> một lần → giải mã đáp án (AES-GCM) · bản "open": đáp án không mã hóa, HS thấy luôn → xem đáp án, tự chấm link kết quả, tổng hợp cả lớp.
    Trang HS không chứa đáp án dạng đọc được. */
 (() => {
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -412,29 +423,29 @@ function gradeAll(a) { const parts = D.parts.map(() => ({ got: 0, max: 0 })); le
 function itemHTML(it, ii) {
   const k = `data-k="${it.id}"`;
   let w = '';
-  if (it.type === 'text') w = `<input class="inp" ${k} placeholder="${esc(it.ph || 'Write here…')}">`;
-  if (it.type === 'long') w = `<textarea class="inp" ${k} rows="${it.rows || 3}" placeholder="${esc(it.ph || 'Write here…')}"></textarea><div class="pv"></div><div class="lines" data-n="${it.lines || 3}"></div>`
+  if (it.type === 'text') w = `<input class="inp" ${k} placeholder="${esc(it.ph || 'Em ghi ở đây…')}">`;
+  if (it.type === 'long') w = `<textarea class="inp" ${k} rows="${it.rows || 3}" placeholder="${esc(it.ph || 'Em viết ở đây…')}"></textarea><div class="pv"></div><div class="lines" data-n="${it.lines || 3}"></div>`
     + (it.words ? `<div class="meter" data-w="${it.words}"><i><b></b></i><span></span></div>` : '');
   if (it.type === 'choice') w = `<div class="opts" ${k} ${it.multi ? 'data-multi="1"' : ''}>${it.opts.map((o, i) => `<button type="button" class="opt" data-i="${i}"><span class="bx"></span>${o}</button>`).join('')}</div>`;
   if (it.type === 'sort') w = `<div class="sort" ${k}><div class="pool"></div><div class="bins" style="--nb:${it.bins.length}">${it.bins.map((b, bi) =>
-    `<div class="bin" data-b="${bi}"><h5>${b}</h5><div class="wl">Write the letter:<i></i><i></i></div></div>`).join('')}</div></div>`;
-  if (it.type === 'frame') w = `<div class="frame" ${k}>${it.lines.map((l, li) => `<div class="fl"><button type="button" class="tag t-${l.tone}" data-li="${li}" title="Tap to add a starter">${l.label}</button>
+    `<div class="bin" data-b="${bi}"><h5>${b}</h5><div class="wl">Ghi chữ cái:<i></i><i></i></div></div>`).join('')}</div></div>`;
+  if (it.type === 'frame') w = `<div class="frame" ${k}>${it.lines.map((l, li) => `<div class="fl"><button type="button" class="tag t-${l.tone}" data-li="${li}" title="Bấm để chèn câu mở đầu">${l.label}</button>
     <div><textarea class="inp" data-li="${li}" rows="2" placeholder="${esc(strip(l.start))} …"></textarea><div class="pv"></div><div class="lines" data-n="2"></div></div></div>`).join('')}
-    <div class="prev"></div><div class="mini"><label><input type="checkbox" class="plain"> Colours off</label><span>Tap a colour label to add a sentence starter.</span></div>
+    <div class="prev"></div><div class="mini"><label><input type="checkbox" class="plain"> Tắt tô màu</label><span>Bấm nhãn màu để chèn câu mở đầu gợi ý.</span></div>
     ${it.words ? `<div class="meter" data-w="${it.words}"><i><b></b></i><span></span></div>` : ''}</div>`;
   if (it.type === 'fill') w = `<div class="fill" ${k}>${it.bank ? `<div class="bank">${it.bank.map(b => `<span>${b}</span>`).join('')}</div>` : ''}<div class="ftpl">${it.tpl.replace(/\[\[(\d+)\]\]/g, (m, n) => `<input class="inp fi" data-bi="${n - 1}" size="${it.w || 9}" autocomplete="off" autocapitalize="off" spellcheck="false">`)}</div></div>`;
   if (it.type === 'match') w = `<div class="mt" ${k}>${it.left.map((l, i) => `<div class="mr"><span class="ml">${l}</span><select class="inp" data-mi="${i}"><option value="">— nối với —</option>${it.right.map((r, j) => `<option value="${j}">${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[j]} ${strip(r)}</option>`).join('')}</select></div>`).join('')}<div class="mlegend">${it.right.map((r, j) => `<span><b>${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[j]}</b> ${r}</span>`).join('')}</div></div>`;
   if (it.type === 'back') w = `<div class="back" ${k}><div class="bvi">${it.vi}</div>${it.steps.map((s, si) => `<div class="bk"><span class="tag t-${s.tone || 'g'}">${'①②③④⑤⑥'[si]} ${si ? 'thêm vào trước' : 'cụm cuối'}</span><div><div class="bq">${s.vi}${s.hint ? `<small>${s.hint}</small>` : ''}</div><input class="inp bi" data-bi="${si}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Tiếng Hàn…"><div class="cum"></div></div></div>`).join('')}</div>`;
   if (it.type === 'check') w = `<div class="cl" ${k} data-pass="${it.pass || it.list.length}">${it.list.map((c, i) => `<label><input type="checkbox" data-i="${i}"> <span>${c}</span></label>`).join('')}
-    <div class="sum"><b>0</b> / ${it.list.length} <span class="medal">${it.medal || 'Passed!'}</span></div></div>`;
-  return `<div class="it" data-id="${it.id}"><p class="q"><span class="qn">${ii + 1}</span><span>${it.q}${it.hint ? `<small>${it.hint}</small>` : ''}</span><span class="score"></span></p>${(it.img ? `<img class="qimg" src="${it.img}" alt="">` : '') + (it.audio ? `<div class="qaud"><audio controls preload="none" src="${it.audio}"></audio></div>` : '')}${w}<div class="ans"></div></div>`;
+    <div class="sum"><b>0</b> / ${it.list.length} <span class="medal">${it.medal || 'Đạt!'}</span></div></div>`;
+  return `<div class="it" data-id="${it.id}"><p class="q"><span class="qn">${ii + 1}</span><span>${it.q}${it.hint ? `<small>${it.hint}</small>` : ''}</span><span class="score"></span></p>${it.eg ? `<div class="eg"><b class="egl">${it.egl || 'Example'}</b> ${it.eg}</div>` : ''}${(it.img ? `<img class="qimg" src="${it.img}" alt="">` : '') + (it.audio ? `<div class="qaud"><audio controls preload="none" src="${it.audio}"></audio></div>` : '')}${w}<div class="ans"></div></div>`;
 }
 function render() {
   $('#nav').innerHTML = D.parts.map((p, pi) => `${pi ? '<span class="sep"></span>' : ''}<a href="#${p.id}" data-pi="${pi}"><span class="dot"><span>${pi + 1}</span></span><span class="lab">${p.short || strip(p.title)}</span></a>`).join('') + '<span class="tot" id="tot"></span>';
   $('#app').innerHTML = D.parts.map((p, pi) => `<section class="part" id="${p.id}"><div class="banner">${p.img ? `<img src="${p.img}" alt="" loading="lazy">` : ''}
     <div class="bt"><div class="n">${String(pi + 1).padStart(2, '0')}</div><div class="m">${esc(p.meta || '')}</div><h2>${p.title}</h2></div>
     <span class="pscore" style="position:absolute;z-index:3;right:18px;top:12px"></span></div>
-    <div class="pbody">${p.intro ? `<p class="pintro">${p.intro}</p>` : ''}${p.items.map(itemHTML).join('')}</div></section>`).join('');
+    <div class="pbody">${p.intro ? `<p class="pintro">${p.intro}</p>` : ''}<div class="gvnote"></div>${p.items.map(itemHTML).join('')}</div></section>`).join('');
   $('#teams').innerHTML = (D.teams || []).map(t => `<option value="${esc(t)}">`).join('');
 }
 
@@ -442,7 +453,7 @@ function render() {
 const words = s => (String(s || '').trim().match(/\S+/g) || []).length;
 function meter(m, n) { if (!m) return; const [lo, hi] = m.dataset.w.split(',').map(Number);
   m.classList.toggle('ok', n >= lo && n <= hi); m.classList.toggle('over', n > hi);
-  $('b', m).style.setProperty('--w', Math.min(100, n / hi * 100) + '%'); $('span', m).textContent = `${n} words · target ${lo}–${hi}`; }
+  $('b', m).style.setProperty('--w', Math.min(100, n / hi * 100) + '%'); $('span', m).textContent = `${n} chữ · mục tiêu ${lo}–${hi}`; }
 function lines(box, txt) { const l = $('.lines', box); if (!l) return; const n = txt.trim() ? 1 : +l.dataset.n; l.innerHTML = '<i></i>'.repeat(n); const pv = $('.pv', box); if (pv) pv.textContent = txt; }
 function filled(it, v) {
   if (v == null) return false;
@@ -484,7 +495,7 @@ function progress() {
     const pc = req.length ? Math.round(f / req.length * 100) : 100, dot = $(`.nav a[data-pi="${pi}"] .dot`);
     dot.style.setProperty('--p', pc); dot.classList.toggle('done', pc === 100);
     if (pc === 100 && !doneOnce.has(pi)) { doneOnce.add(pi); if (booted && !RES) confetti(); } else if (pc < 100) doneOnce.delete(pi); });
-  $('#tot').textContent = RES ? '' : `Done ${all ? Math.round(fil / all * 100) : 0}%`;
+  $('#tot').textContent = RES ? '' : `Hoàn thành ${all ? Math.round(fil / all * 100) : 0}%`;
   if (K && RES) { const g = gradeAll(a); g.parts.forEach((p, pi) => { $$('.pscore')[pi].textContent = p.max ? `${p.got}/${p.max}` : ''; }); const t = $('#gTot'); if (t) t.textContent = `${g.got} / ${g.max} điểm gợi ý`; }
 }
 function paintAll() { ITEMS.forEach(paint); progress(); const i = (RES ? RES.i : st.info) || {}; $('#fN').value = i.n || ''; $('#fL').value = i.l || ''; $('#fG').value = i.g || ''; }
@@ -539,22 +550,22 @@ function printAs(sz) { document.documentElement.classList.toggle('a5', sz === 'a
 let lastLink = '';
 const DO = {
   send: async () => {
-    const i = st.info || {}; if (!String(i.n || '').trim()) { toast('Please write your name first.'); $('#fN').focus(); return; }
+    const i = st.info || {}; if (!String(i.n || '').trim()) { toast('Em ghi Họ và tên trước khi nộp nhé!'); $('#fN').focus(); return; }
     const a = st.a; const miss = D.parts.map((p, pi) => p.items.filter(it => !it.optional && !filled(it, a[it.id])).length ? pi + 1 : 0).filter(Boolean);
     lastLink = BASE + '#r=' + await pack({ v: 1, id: D.id, i, a, t: Date.now() });
-    $('#sLink').value = lastLink; $('#sWarn').textContent = miss.length ? `Part ${miss.join(', ')} has empty answers – you can still submit.` : '';
+    $('#sLink').value = lastLink; $('#sWarn').textContent = miss.length ? `Phần ${miss.join(', ')} còn ô trống – em vẫn có thể nộp.` : '';
     $('#qrOut').innerHTML = ''; $('#bShare').style.display = navigator.share ? '' : 'none'; $('#mSend').classList.add('show'); },
-  copy: async () => toast(await copy(lastLink) ? 'Link copied – paste it in Zalo/Messenger for your teacher.' : 'Please select and copy the link.'),
-  share: async () => { try { await navigator.share({ title: 'Answers · ' + strip(D.title) + ' · ' + (st.info.n || ''), text: 'Worksheet answers of ' + (st.info.n || '') + ':', url: lastLink }); } catch (e) {} },
-  mail: () => { location.href = 'mailto:?subject=' + encodeURIComponent('Worksheet answers · ' + strip(D.title) + ' · ' + (st.info.n || '')) + '&body=' + encodeURIComponent(lastLink); },
-  qr: () => { const box = $('#qrOut'); if (lastLink.length > 2800) { box.innerHTML = '<p class="warn">The link is too long for a QR code – please use Copy link.</p>'; return; }
-    const draw = () => { try { const q = qrcode(0, 'L'); q.addData(lastLink); q.make(); box.innerHTML = q.createSvgTag({ cellSize: 3, margin: 2, scalable: true }); } catch (e) { box.innerHTML = '<p class="warn">Could not make the QR code.</p>'; } };
-    if (window.qrcode) return draw(); box.textContent = 'Making code…'; const s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'; s.onload = draw; s.onerror = () => box.innerHTML = '<p class="warn">QR needs internet – please use Copy link.</p>'; document.head.append(s); },
+  copy: async () => toast(await copy(lastLink) ? 'Đã sao chép link kết quả – dán vào Zalo/Messenger gửi thầy cô.' : 'Hãy chọn và sao chép link thủ công.'),
+  share: async () => { try { await navigator.share({ title: 'Bài làm · ' + strip(D.title) + ' · ' + (st.info.n || ''), text: 'Bài làm worksheet của ' + (st.info.n || '') + ':', url: lastLink }); } catch (e) {} },
+  mail: () => { location.href = 'mailto:?subject=' + encodeURIComponent('Bài làm worksheet · ' + strip(D.title) + ' · ' + (st.info.n || '')) + '&body=' + encodeURIComponent(lastLink); },
+  qr: () => { const box = $('#qrOut'); if (lastLink.length > 2800) { box.innerHTML = '<p class="warn">Bài dài nên link quá dài để làm mã QR – hãy dùng nút Sao chép.</p>'; return; }
+    const draw = () => { try { const q = qrcode(0, 'L'); q.addData(lastLink); q.make(); box.innerHTML = q.createSvgTag({ cellSize: 3, margin: 2, scalable: true }); } catch (e) { box.innerHTML = '<p class="warn">Không tạo được QR.</p>'; } };
+    if (window.qrcode) return draw(); box.textContent = 'Đang tạo mã…'; const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'; s.onload = draw; s.onerror = () => box.innerHTML = '<p class="warn">Cần mạng để tạo QR – hãy dùng nút Sao chép.</p>'; document.head.append(s); },
   a4: () => printAs('a4'), a5: () => printAs('a5'),
-  reset: () => { if (!confirm('Delete all your answers on this phone and start again?')) return; st = { info: {}, a: {} }; save(); doneOnce = new Set(); paintAll(); window.scrollTo(0, 0); },
+  reset: () => { if (!confirm('Xóa toàn bộ bài làm trên máy này để làm lại?')) return; st = { info: {}, a: {} }; save(); doneOnce = new Set(); paintAll(); window.scrollTo(0, 0); },
   fresh: () => { location.href = BASE; },
-  ans: b => { showAns = !showAns; document.body.classList.toggle('showans', showAns); b.textContent = showAns ? 'Hide answers' : 'Show answers'; },
+  ans: b => { showAns = !showAns; document.body.classList.toggle('showans', showAns); b.textContent = showAns ? 'Ẩn đáp án' : 'Hiện đáp án'; },
   logout: () => { LS.del(KEYK); location.href = BASE; },
   sum: () => $('#mSum').classList.add('show'),
   read: async () => {
@@ -562,11 +573,11 @@ const DO = {
     for (const m of ms) { try { const r = await unpack(m); if (r.id !== D.id) continue; const key = (r.i?.n || '') + '|' + r.t; if (seen.has(key)) continue; seen.add(key); rows.push({ r, m, g: gradeAll(r.a || {}) }); } catch (e) {} }
     rows.sort((x, y) => String(x.r.i?.l || '').localeCompare(y.r.i?.l || '') || String(x.r.i?.n || '').localeCompare(y.r.i?.n || '', 'vi'));
     SUM = rows; const ph = D.parts.map((p, pi) => `<th>P${pi + 1}</th>`).join('');
-    $('#sumOut').innerHTML = rows.length ? `<p class="small">${rows.length} submissions · scores are keyword hints – check the writing yourself.</p><div style="overflow-x:auto"><table class="sumtb"><tr><th>#</th><th>Name</th><th>Class</th><th>Team</th>${ph}<th>Total</th><th>Submitted at</th><th></th></tr>` +
+    $('#sumOut').innerHTML = rows.length ? `<p class="small">${rows.length} bài nộp · điểm gợi ý do máy chấm theo từ khóa – GV xem lại phần tự luận.</p><div style="overflow-x:auto"><table class="sumtb"><tr><th>#</th><th>Họ tên</th><th>Lớp</th><th>Nhóm</th>${ph}<th>Tổng</th><th>Nộp lúc</th><th></th></tr>` +
       rows.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.r.i?.n)}</td><td>${esc(x.r.i?.l)}</td><td>${esc(x.r.i?.g)}</td>${x.g.parts.map(p => `<td class="n">${p.max ? p.got : ''}</td>`).join('')}<td class="n">${x.g.got}/${x.g.max}</td><td>${new Date(x.r.t).toLocaleString('vi-VN')}</td><td><a href="${BASE}#r=${x.m}" target="_blank" rel="noopener">Xem</a></td></tr>`).join('') + '</table></div>'
-      : '<p class="warn">No valid result links for this worksheet.</p>';
+      : '<p class="warn">Không tìm thấy link kết quả hợp lệ của worksheet này.</p>';
     $('#bCsv').style.display = rows.length ? '' : 'none'; },
-  csv: () => { const head = ['STT', 'Name', 'Class', 'Team', ...D.parts.map((p, i) => 'Part ' + (i + 1)), 'Total', 'Max', 'Submitted at', 'Link'];
+  csv: () => { const head = ['STT', 'Họ tên', 'Lớp', 'Nhóm', ...D.parts.map((p, i) => 'Phần ' + (i + 1)), 'Tổng', 'Tối đa', 'Nộp lúc', 'Link'];
     const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
     const body = SUM.map((x, i) => [i + 1, x.r.i?.n, x.r.i?.l, x.r.i?.g, ...x.g.parts.map(p => p.got), x.g.got, x.g.max, new Date(x.r.t).toLocaleString('vi-VN'), BASE + '#r=' + x.m].map(q).join(','));
     const blob = new Blob(['﻿' + [head.map(q).join(','), ...body].join('\r\n')], { type: 'text/csv' }); const a = document.createElement('a');
@@ -583,15 +594,18 @@ function fillAnswers() {
     if (!h && k.mp) h = it.left.map((l, i) => `${strip(l)} → <b>${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[k.mp[i]]}</b>`).join(' · ');
     if (!h && k.eq) h = '<b>' + (Array.isArray(k.eq) ? k.eq[0] : k.eq) + '</b>';
     if (k.bins) h += '<ul>' + it.bins.map((b, bi) => `<li><b>${b}:</b> ${it.chips.map((c, ci) => k.bins[ci] === bi ? String.fromCharCode(65 + ci) + '. ' + c : '').filter(Boolean).join('; ')}</li>`).join('') + '</ul>';
-    if (k.kw) h += `<div style="font-size:12px;color:var(--mute);margin-top:4px">Auto-score by keywords: ${k.kw.map(w => Array.isArray(w) ? w.join(' / ') : w).join(' · ')}${k.need && k.need < k.kw.length ? ` (need ${k.need})` : ''}</div>`;
+    if (k.kw) h += `<div style="font-size:12px;color:var(--mute);margin-top:4px">Máy chấm theo từ khóa: ${k.kw.map(w => Array.isArray(w) ? w.join(' / ') : w).join(' · ')}${k.need && k.need < k.kw.length ? ` (cần ${k.need})` : ''}</div>`;
+    if (k.note) h += `<div class="tnote"><b>Ghi chú GV</b> ${k.note}</div>`;   // chỉ có trong bản GV (…/gv/)
     box.innerHTML = h; });
+  D.parts.forEach(p => { const g = K['_p_' + p.id], box = $(`#${p.id} .gvnote`); if (g && box) box.innerHTML = '<b>Hướng dẫn cho GV</b>' + g; });
 }
 function modeBar() {
   const b = $('#modeBar'); const i = RES ? RES.i || {} : {};
-  const who = RES ? `<span>Answers of <b>${esc(i.n || '(no name)')}</b> · ${esc(i.l || '')} · ${esc(i.g || '')} · ${RES.t ? new Date(RES.t).toLocaleString('vi-VN') : ''}</span>` : '';
-  if (OPEN && !document.body.classList.contains('gv')) b.innerHTML = `<b>ANSWER KEY VERSION</b>${who || '<span>· đáp án hiện dưới mỗi câu để em tự đối chiếu</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Hide answers</button>${RES ? '<button class="b sm" data-do="fresh">Blank worksheet</button>' : ''}`;
-  else if (K) b.innerHTML = `<b>TEACHER MODE</b>${who || '<span>· đáp án hiện dưới mỗi câu</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Hide answers</button><button class="b sm" data-do="sum">Collect results</button>${RES ? '<button class="b sm" data-do="fresh">Blank worksheet</button>' : ''}<button class="b sm" data-do="logout">Exit teacher mode</button>`;
-  else if (RES) b.innerHTML = `<b>SUBMITTED</b>${who}<button class="b sm" data-do="fresh">Open the worksheet</button>`;
+  const who = RES ? `<span>Bài nộp của <b>${esc(i.n || '(chưa ghi tên)')}</b> · ${esc(i.l || '')} · ${esc(i.g || '')} · ${RES.t ? new Date(RES.t).toLocaleString('vi-VN') : ''}</span>` : '';
+  if (OPEN && !document.body.classList.contains('gv')) b.innerHTML = `<b>BẢN CÓ ĐÁP ÁN</b>${who || '<span>· đáp án hiện dưới mỗi câu để em tự đối chiếu</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Ẩn đáp án</button>${RES ? '<button class="b sm" data-do="fresh">Worksheet trống</button>' : ''}`;
+  else if (K) b.innerHTML = `<b>CHẾ ĐỘ GIÁO VIÊN</b>${who || '<span>· đáp án hiện dưới mỗi câu</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Ẩn đáp án</button><button class="b sm" data-do="sum">Tổng hợp bài nộp</button>${RES ? '<button class="b sm" data-do="fresh">Worksheet trống</button>' : ''}<button class="b sm" data-do="logout">Thoát GV</button>`;
+  else if (RES) b.innerHTML = `<b>BÀI ĐÃ NỘP</b>${who}<button class="b sm" data-do="fresh">Mở worksheet để làm</button>`;
+  else if (D.gv) b.innerHTML = '<b>BẢN GIÁO VIÊN</b><span>· Mở bằng link GV (có #gv=…) để thấy đáp án và ghi chú dạy.</span>';
 }
 
 /* ---------- pháo giấy ---------- */
@@ -607,12 +621,13 @@ function confetti() { if (matchMedia('(prefers-reduced-motion: reduce)').matches
   const k = H.get('gv') || LS.get(KEYK, null);
   if (OPEN) { K = JSON.parse(new TextDecoder().decode(b64u.dec(ENC.slice(5)))); document.body.classList.add('open', 'showans'); fillAnswers();
     if (k) { LS.set(KEYK, k); document.body.classList.add('gv'); } }
-  else if (k && ENC) { try { K = await unlock(k); LS.set(KEYK, k); document.body.classList.add('gv', 'showans'); fillAnswers(); } catch (e) { if (H.get('gv')) toast('Wrong teacher key.'); LS.del(KEYK); } }
+  else if (k && ENC) { try { K = await unlock(k); LS.set(KEYK, k); document.body.classList.add('gv', 'showans'); fillAnswers(); } catch (e) { if (H.get('gv')) toast('Khóa GV không đúng.'); LS.del(KEYK); } }
   if (H.get('r')) { try { RES = await unpack(H.get('r')); document.body.classList.add('res'); $('#app').classList.add('ro'); $('.info').classList.add('ro');
-    if (RES.id !== D.id) toast('This result link is for another worksheet.'); } catch (e) { toast('This result link is broken.'); } }
+    if (RES.id !== D.id) toast('Link kết quả này thuộc worksheet khác.'); } catch (e) { toast('Link kết quả bị hỏng hoặc thiếu.'); } }
   if (H.get('gv')) history.replaceState(null, '', location.pathname + (H.get('r') ? '#r=' + H.get('r') : ''));
+  if (D.gv) document.body.classList.add('gvpage');   // bản GV (…/gv/): không có nút Nộp bài
   modeBar(); paintAll(); booted = true;
-  $$('.actions [data-stud]').forEach(x => x.style.display = RES ? 'none' : '');
+  $$('.actions [data-stud]').forEach(x => x.style.display = (RES || D.gv) ? 'none' : '');
   const p = H.get('p'); if (p && $('#' + p)) setTimeout(() => $('#' + p).scrollIntoView({ behavior: 'smooth' }), 200);
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { const pi = D.parts.findIndex(x => x.id === en.target.id); $$('.nav a').forEach((a, i) => a.classList.toggle('cur', i === pi)); } }), { rootMargin: '-40% 0px -55% 0px' });
   $$('.part').forEach(s => io.observe(s));
