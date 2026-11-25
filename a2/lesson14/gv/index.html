@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Worksheet · Lesson 14 · Feelings, Health &amp; Likes</title>
+<link rel="stylesheet" href="../fonts.css">
+<style>/* Worksheet tương tác – skill cinematic-lesson-html. Cùng bảng màu với slide (scripts/themes.py ghi đè :root). */
+:root{
+  --paper:#F9F8F3; --card:#fff; --ink:#1E3F20; --ink2:#3d5a3f; --mute:#6f7d6c; --line:#d9ddd0;
+  --g:#1E3F20; --gl:#E2ECE0; --y:#D99B26; --yl:#FCF3CF; --r:#9E4733; --rl:#F5E1DA; --yd:#8a5d0c; --ok:#4f8a4a; --cine:#24331f; --sh:30,63,32;
+  --f-big:'Anton',Impact,sans-serif; --f-hand:'Pacifico',cursive; --f-label:'Amatic SC',cursive;
+  --f-body:'Be Vietnam Pro',system-ui,sans-serif; --ease:cubic-bezier(.25,1,.5,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+img{max-width:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:340px;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--cine)}
+.hero .bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% top;animation:kb 26s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,24,13,.86),rgba(14,24,13,.15) 65%)}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:40px;padding-bottom:26px;display:flex;gap:18px;align-items:flex-end}
+.hero .tt{flex:1;min-width:0}
+.hero .kick{font:700 22px/1 var(--f-label);letter-spacing:3px;color:var(--y)}
+.hero h1{font:400 clamp(40px,9vw,76px)/1 var(--f-big);margin:6px 0 4px;text-transform:uppercase;letter-spacing:1px;text-shadow:0 4px 18px rgba(0,0,0,.35)}
+.hero .au{font:400 22px/1.3 var(--f-hand);color:#f3e7c4}
+.hero .meta{font:600 13px/1.4 var(--f-body);letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-top:6px}
+.qrbox{background:#fff;border-radius:14px;padding:8px 8px 4px;text-align:center;color:var(--ink);flex:none}
+.qrbox svg{display:block;width:96px;height:96px}
+.qrbox small{display:block;font:700 10px/1.3 var(--f-body);letter-spacing:.5px;margin-top:2px}
+
+/* ---------- MODE BANNER / TOOLBAR ---------- */
+.mode{display:none;background:var(--r);color:#fff;font:600 14px/1.4 var(--f-body);padding:9px 0}
+.mode .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mode b{letter-spacing:1px}
+body.gv .mode,body.res .mode,body.open .mode{display:block}
+body.gv .info,body.res .info,body.open .info{margin-top:14px}
+body.res:not(.gv) .mode,body.open:not(.gv) .mode{background:var(--g)}
+.mode button{margin-left:auto}
+.mode button+button{margin-left:0}
+
+/* ---------- INFO ---------- */
+.info{margin:-30px auto 0;position:relative;z-index:3}
+.info .card{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:12px;padding:16px}
+.info label{display:block;font:700 12px/1 var(--f-body);letter-spacing:1px;color:var(--mute);text-transform:uppercase;margin-bottom:6px}
+.intro{margin:18px 0 0;font-size:16px;color:var(--ink2)}
+
+/* ---------- NAV (trạm) ---------- */
+.nav{position:sticky;top:0;z-index:20;background:rgba(249,248,243,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:18px}
+.nav .wrap{display:flex;align-items:center;gap:6px;padding-top:8px;padding-bottom:8px;overflow-x:auto;scrollbar-width:none}
+.nav a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:600 13px/1.2 var(--f-body);padding:6px 10px 6px 6px;border-radius:999px;white-space:nowrap;flex:none;transition:background .2s}
+.nav a:hover,.nav a.cur{background:var(--gl)}
+.nav .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:400 16px/1 var(--f-big);color:#fff;background:conic-gradient(var(--y) calc(var(--p,0)*1%),#b8c0b2 0);position:relative}
+.nav .dot::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--g)}
+.nav .dot span{position:relative}
+.nav .dot.done::before{background:var(--y)}
+.nav .sep{flex:none;width:16px;border-top:2px dashed #b8c0b2}
+.nav .tot{margin-left:auto;font:700 12px var(--f-body);color:var(--mute);white-space:nowrap;padding-left:10px}
+
+/* ---------- PART ---------- */
+.part{margin:26px 0 8px;scroll-margin-top:60px}
+.banner{position:relative;height:170px;border-radius:20px 20px 0 0;overflow:hidden;background:var(--g)}
+.banner img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.part:hover .banner img{transform:scale(1.05)}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,24,13,.8),rgba(14,24,13,.05) 75%)}
+.banner .bt{position:absolute;z-index:2;left:22px;right:22px;bottom:14px;color:#fff}
+.banner .n{font:400 64px/0.9 var(--f-big);color:var(--y);float:left;margin-right:14px}
+.banner h2{font:400 clamp(24px,4.6vw,34px)/1.08 var(--f-big);margin:4px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+.banner .m{font:600 12px/1.4 var(--f-body);letter-spacing:1px;opacity:.9;text-transform:uppercase}
+.pbody{background:var(--card);border-radius:0 0 20px 20px;padding:8px 22px 20px;box-shadow:0 10px 30px rgba(var(--sh),.07)}
+.pintro{margin:12px 0 0;padding:10px 14px;background:var(--yl);border-radius:12px;font-size:15px}
+.card{background:var(--card);border-radius:18px;box-shadow:0 10px 30px rgba(var(--sh),.07)}
+
+/* ---------- ITEM ---------- */
+.it{padding:18px 0 16px;border-bottom:1px dashed var(--line)}
+.it:last-child{border-bottom:0}
+.q{font:600 17px/1.45 var(--f-body);margin:0 0 10px;display:flex;gap:10px}
+.q .qn{flex:none;width:28px;height:28px;border-radius:9px;background:var(--gl);color:var(--g);display:grid;place-items:center;font:800 13px var(--f-body);margin-top:-1px}
+.it.filled .q .qn{background:var(--g);color:#fff}
+.q small{display:block;font:500 13px/1.4 var(--f-body);color:var(--mute);margin-top:2px}
+.inp{width:100%;border:0;border-bottom:2px dotted #b8c0b2;background:linear-gradient(transparent 92%,transparent);padding:8px 4px;font-size:16px;outline:0;border-radius:0;transition:border-color .2s,background .2s}
+.inp:focus{border-bottom-color:var(--y);background:var(--yl)}
+textarea.inp{resize:vertical;min-height:84px;line-height:1.6;border:2px dotted #c9cfc2;border-radius:12px;padding:10px 12px}
+textarea.inp:focus{border-color:var(--y)}
+.meter{display:flex;align-items:center;gap:10px;margin-top:6px;font:600 12px var(--f-body);color:var(--mute)}
+.meter i{flex:1;height:6px;border-radius:9px;background:var(--line);overflow:hidden;position:relative}
+.meter i b{position:absolute;inset:0 auto 0 0;width:var(--w,0%);background:var(--y);border-radius:9px;transition:width .3s var(--ease)}
+.meter.ok i b{background:var(--ok)} .meter.over i b{background:var(--r)}
+.pv,.lines{display:none}
+
+/* lựa chọn */
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:15px;line-height:1.35;text-align:left;transition:all .18s var(--ease)}
+.opt:hover{border-color:var(--y)}
+.opt.on{background:var(--g);border-color:var(--g);color:#fff;transform:translateY(-1px);box-shadow:0 6px 14px rgba(var(--sh),.18)}
+.opt .bx{display:none}
+
+/* phân loại (chạm thẻ → chạm ngăn) */
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:46px;padding:10px;border-radius:14px;background:var(--paper);border:2px dashed var(--line);margin-bottom:10px}
+.pool:empty::before{content:"✓ Đã xếp hết thẻ";color:var(--mute);font:600 13px var(--f-body);align-self:center}
+.chip{border:0;background:var(--yl);border-radius:12px;padding:7px 11px;font-size:14.5px;line-height:1.35;cursor:pointer;box-shadow:0 2px 0 rgba(var(--sh),.12);transition:transform .2s var(--ease),box-shadow .2s;text-align:left}
+.chip b{font:800 11px var(--f-body);color:var(--r);margin-right:6px}
+.chip.sel{background:var(--y);color:#fff;transform:translateY(-3px) rotate(-1deg);box-shadow:0 8px 18px rgba(217,155,38,.4)}
+.chip.sel b{color:#fff}
+.bins{display:grid;grid-template-columns:repeat(var(--nb,3),1fr);gap:10px}
+.bin{border-radius:14px;padding:10px;min-height:120px;background:var(--gl);border:2px solid transparent;cursor:pointer;transition:border-color .2s,background .2s;display:flex;flex-direction:column;gap:6px}
+.bin h5{margin:0 0 2px;font:800 13px/1.3 var(--f-body);letter-spacing:.3px}
+.bin:nth-child(1){background:var(--rl)} .bin:nth-child(2){background:var(--yl)} .bin:nth-child(3){background:var(--gl)}
+.bin.hot{border-color:var(--y);border-style:dashed}
+.bin .chip{background:#fff}
+.bin .wl{display:none}
+
+/* khung đoạn văn */
+.frame .fl{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:start;margin-bottom:8px}
+.frame .tag{font:800 11px/1.3 var(--f-body);letter-spacing:1px;text-transform:uppercase;padding:7px 8px;border-radius:8px;text-align:center}
+.t-r{background:var(--rl);color:var(--r)} .t-y{background:var(--yl);color:var(--yd)} .t-g{background:var(--gl);color:var(--g)}
+.frame textarea.inp{min-height:58px}
+.prev{margin-top:10px;padding:14px 16px;border-radius:14px;background:var(--paper);border:1px solid var(--line);font-size:15.5px;line-height:1.65}
+.prev:empty::before{content:"Đoạn văn của em sẽ hiện ở đây khi em điền các ô trên…";color:var(--mute)}
+.prev .cr{background:var(--rl);border-radius:4px} .prev .cy{background:var(--yl);border-radius:4px} .prev .cg{background:var(--gl);border-radius:4px}
+.prev.plain span{background:none!important}
+.mini{font:600 12px var(--f-body);color:var(--mute);display:flex;gap:10px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.mini label{display:flex;gap:6px;align-items:center;cursor:pointer}
+
+/* bảng tự chấm */
+.cl label{display:flex;gap:10px;align-items:flex-start;padding:7px 2px;cursor:pointer;font-size:15px}
+.cl input{width:20px;height:20px;accent-color:var(--g);flex:none;margin-top:1px}
+.cl .sum{display:flex;align-items:center;gap:10px;margin-top:6px;font:700 14px var(--f-body)}
+.cl .sum b{font:400 26px/1 var(--f-big);color:var(--g)}
+.medal{display:none;font:400 18px/1 var(--f-hand);color:#fff;background:var(--r);padding:8px 14px;border-radius:999px;animation:pop .5s var(--ease)}
+.cl.pass .medal{display:inline-block}
+@keyframes pop{from{transform:scale(.4) rotate(-8deg);opacity:0}}
+
+/* ---------- ĐÁP ÁN (chỉ GV) ---------- */
+.ans{display:none;margin-top:10px;padding:10px 14px;border-radius:12px;background:#eaf4e6;border-left:5px solid var(--ok);font-size:14.5px}
+.ans::before{content:"ANSWER · HINT";display:block;font:800 11px var(--f-body);letter-spacing:1.5px;color:var(--ok);margin-bottom:4px}
+body.gv.showans .ans,body.open.showans .ans{display:block}
+.ans ul{margin:4px 0;padding-left:18px}
+.q .score{margin-left:auto;align-self:flex-start;flex:none}
+.score{display:none;font:800 12px var(--f-body);padding:4px 9px;border-radius:7px;margin-left:8px;background:var(--line)}
+body.gv.res .score,body.open.res .score{display:inline-block}
+.score.s1{background:var(--ok);color:#fff} .score.s5{background:var(--y);color:#fff} .score.s0{background:var(--r);color:#fff}
+.pscore{display:none;margin-left:auto;font:400 26px/1 var(--f-big);color:var(--y)}
+body.gv.res .pscore,body.open.res .pscore{display:block}
+
+/* ---------- ACTIONS ---------- */
+.actions{margin:30px 0 40px;text-align:center}
+.actions .card{padding:22px 18px}
+.actions h3{font:400 30px/1.1 var(--f-big);margin:0 0 4px;text-transform:uppercase}
+.actions p{margin:0 0 14px;color:var(--mute);font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.b{border:0;border-radius:12px;padding:11px 18px;font:700 15px/1 var(--f-body);cursor:pointer;background:var(--gl);color:var(--g);transition:transform .15s,box-shadow .2s}
+.b:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(var(--sh),.15)}
+.b:active{transform:translateY(1px)}
+.b.p{background:var(--g);color:#fff} .b.y{background:var(--y);color:#fff} .b.r{background:var(--r);color:#fff}
+.b.sm{padding:7px 12px;font-size:13px;border-radius:9px}
+.mode .b{background:rgba(255,255,255,.18);color:#fff}
+.foot{text-align:center;color:var(--mute);font-size:12px;padding:0 0 40px}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(14,24,13,.55);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.modal .card{width:min(640px,100%);max-height:92vh;overflow:auto;padding:22px;position:relative}
+.modal h3{font:400 28px/1.1 var(--f-big);margin:0 0 6px;text-transform:uppercase}
+.modal .x{position:absolute;right:12px;top:10px;border:0;background:none;font-size:26px;cursor:pointer;color:var(--mute)}
+.modal textarea{width:100%;min-height:96px;font:500 12px/1.4 ui-monospace,Consolas,monospace;border:2px solid var(--line);border-radius:12px;padding:10px;word-break:break-all}
+.modal .warn{font-size:13px;color:var(--r);margin:6px 0}
+#qrOut{display:flex;justify-content:center;margin-top:12px}
+#qrOut svg,#qrOut img{width:min(320px,80vw);height:auto;background:#fff;padding:8px;border-radius:12px}
+.sumtb{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.sumtb th,.sumtb td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:left;white-space:nowrap}
+.sumtb th{font-size:11px;letter-spacing:1px;color:var(--mute);text-transform:uppercase}
+.sumtb td.n{text-align:right;font-weight:700}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:var(--g);color:#fff;padding:10px 18px;border-radius:12px;font:600 14px var(--f-body);opacity:0;transition:all .3s var(--ease);z-index:60;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.ro .inp,.ro .opt,.ro .chip,.ro .bin,.ro input{pointer-events:none}
+canvas.cf{position:fixed;inset:0;pointer-events:none;z-index:70}
+
+@media (max-width:640px){
+  .hero{min-height:300px} .hero .wrap{flex-direction:column;align-items:flex-start}
+  .qrbox{display:none}
+  .info .card{grid-template-columns:1fr 1fr} .info .card>div:first-child{grid-column:1/-1}
+  .bins{grid-template-columns:1fr}
+  .frame .fl{grid-template-columns:1fr;gap:4px} .frame .tag{justify-self:start}
+  .pbody{padding:6px 16px 16px} .banner{height:140px}
+  .nav .lab{display:none} .nav a{padding:4px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- IN A4 / A5 ---------- */
+.ponly{display:none}
+@media print{
+  :root{--card:#fff}
+  body{background:#fff;font-size:10.5pt;line-height:1.45}
+  .nav,.actions,.modal,.mode,.toast,.mini,.meter,.b,.pintro,.banner img,canvas.cf,.hero .bgi,.hero::after{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .hero{min-height:0;background:none;color:var(--ink);border-bottom:2px solid var(--ink);margin-bottom:4mm}
+  .hero .wrap{padding:0 0 3mm;flex-direction:row;align-items:center}
+  .hero h1{font-size:30pt;text-shadow:none;margin:0} .hero .kick{color:var(--r);font-size:15pt} .hero .au{color:var(--ink2);font-size:13pt} .hero .meta{opacity:1;font-size:8pt}
+  .qrbox{display:block!important;border:1px solid var(--line);padding:2mm} .qrbox svg{width:24mm;height:24mm} .qrbox small{font-size:6.5pt;max-width:30mm}
+  .info{margin:0} .info .card{box-shadow:none;padding:0;grid-template-columns:2fr 1fr 1fr;gap:4mm}
+  .intro{display:none}
+  .card,.pbody{box-shadow:none}
+  .part{margin:4mm 0 0;break-before:auto}
+  .part+.part{break-before:page}
+  .banner{height:auto;background:none;border-radius:0;border-bottom:1.5px solid var(--ink);overflow:visible}
+  .banner::after{display:none}
+  .banner .bt{position:static;color:var(--ink);padding:0 0 1.5mm}
+  .banner .n{font-size:26pt;color:var(--y)} .banner h2{font-size:16pt} .banner .m{color:var(--mute);font-size:7.5pt}
+  .pbody{padding:0;border-radius:0}
+  .it{padding:2.6mm 0;break-inside:avoid;border-bottom:.6px dashed #bbb}
+  .q{font-size:10.5pt;margin-bottom:1.5mm} .q .qn{width:5.5mm;height:5.5mm;font-size:8pt;border:1px solid var(--g);background:none!important;color:var(--g)!important}
+  .inp{border-bottom:1px dotted #777;padding:1mm 0 .5mm;font-size:10.5pt;min-height:7mm}
+  textarea.inp{display:none}
+  .pv{display:block;white-space:pre-wrap;font-size:10.5pt;line-height:8mm;min-height:8mm;border-bottom:1px dotted #777}
+  .pv:empty{display:none}
+  .lines{display:block} .lines i{display:block;height:8mm;border-bottom:1px dotted #777}
+  .opt{border:0;padding:.6mm 0;border-radius:0;font-size:10pt;width:100%;background:none!important;color:var(--ink)!important;box-shadow:none!important;transform:none!important}
+  .opt .bx{display:inline-block;width:3.6mm;height:3.6mm;border:1px solid var(--ink);margin-right:2mm;vertical-align:-.5mm;text-align:center;font-size:7pt;line-height:3.4mm}
+  .opts{gap:0 6mm;display:grid;grid-template-columns:1fr 1fr}
+  .pool{background:none;border:1px dashed #999;padding:1.5mm;gap:1.5mm 3mm}
+  .pool:empty{display:none}
+  .chip{background:none!important;box-shadow:none;padding:.5mm 0;font-size:9.5pt;color:var(--ink)!important;transform:none!important}
+  .bins{grid-template-columns:repeat(var(--nb,3),1fr);gap:3mm}
+  .bin{background:none!important;border:1px solid #999;min-height:34mm;padding:2mm}
+  .bin .wl{display:block;margin-top:auto;font-size:8pt;color:var(--mute)}
+  .bin .wl i{display:block;border-bottom:1px dotted #777;height:6mm}
+  .frame .fl{grid-template-columns:24mm 1fr;margin-bottom:1mm}
+  .frame .tag{background:none!important;border:1px solid currentColor;padding:1mm;font-size:7pt}
+  .prev{display:none}
+  .cl label{padding:.6mm 0;font-size:9.5pt} .cl input{width:3.6mm;height:3.6mm}
+  .cl .sum b{font-size:14pt}
+  .ans{break-inside:avoid;background:none;border-left:3px solid var(--ok);font-size:9.5pt}
+  .foot{padding:4mm 0 0;font-size:7.5pt}
+  .ponly{display:block}
+  html.a5 body{font-size:9pt}
+  html.a5 .q,html.a5 .inp,html.a5 .pv,html.a5 .opt{font-size:9pt}
+  html.a5 .hero h1{font-size:22pt} html.a5 .qrbox svg{width:20mm;height:20mm}
+  html.a5 .opts{grid-template-columns:1fr}
+  html.a5 .bins{grid-template-columns:1fr} html.a5 .bin{min-height:20mm}
+  html.a5 .pv,html.a5 .lines i{line-height:7mm;height:7mm}
+  html.a5 .info .card{grid-template-columns:1fr 1fr}
+  html.a5 .info .card>div:first-child{grid-column:1/-1}
+}
+body.gv.showans .ans:empty,body.open.showans .ans:empty{display:none}
+.hero .kick{display:inline-block;background:rgba(14,24,13,.55);padding:6px 12px 4px;border-radius:8px}
+.banner .bt{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:end}
+.banner .n{grid-row:1/3;float:none;margin:0}
+@media (max-width:640px){
+  .banner .n{font-size:46px} .banner h2{font-size:22px}
+  .bins{grid-template-columns:repeat(var(--nb,3),1fr);gap:6px}
+  .bin{padding:6px;min-height:96px} .bin h5{font-size:11px}
+  .bin .chip{font-size:12.5px;padding:5px 7px}
+  .pool{position:relative}
+}
+@media print{.hero .kick{background:none;padding:0}}
+
+/* ---- loại câu mới: fill · match · back + ảnh/âm thanh trong câu ---- */
+.qimg{display:block;max-width:100%;max-height:260px;margin:8px 0 4px;border-radius:12px;border:1.5px solid var(--line,#ddd);background:#fff}
+.eg{margin:6px 0 8px;padding:7px 12px;border-left:4px solid var(--g);background:var(--gl,#E7F2F0);border-radius:0 8px 8px 0;font:500 14px/1.45 var(--f-body)}.eg .egl{font:800 11px var(--f-body);letter-spacing:1px;text-transform:uppercase;margin-right:8px;color:var(--g)}
+.qaud{margin:8px 0 4px}.qaud audio{width:100%;max-width:520px;height:42px}
+.fill .bank{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.fill .bank span{background:var(--yl);border:1.5px solid var(--y);border-radius:999px;padding:3px 12px;font-weight:700}
+.fill .ftpl{line-height:2.6;font-size:17px}.fill .fi{display:inline-block;width:auto;min-width:5.5em;margin:0 3px;padding:4px 8px;text-align:center;font-size:17px}
+.mt .mr{display:grid;grid-template-columns:1fr minmax(150px,46%);gap:10px;align-items:center;margin:6px 0}.mt .ml{font-weight:700;font-size:17px}
+.mt .mlegend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:15px;color:var(--mute)}.mt .mlegend b{color:var(--g)}
+.back .bvi{font-size:18px;margin:2px 0 10px;padding:8px 12px;background:var(--gl);border-radius:10px;line-height:1.7}
+.back .bk{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:8px 0}
+.back .bk .tag{white-space:nowrap;font:700 12px var(--f-body);padding:5px 10px;border-radius:999px;background:var(--gl);color:var(--g)}
+.back .bq{font-weight:700;margin-bottom:4px}.back .bq small{display:block;font-weight:400;color:var(--mute);font-size:13px}
+.back .cum{font-size:19px;font-weight:700;color:var(--g);min-height:1.4em;margin-top:3px}
+.bvi .c0,.bq .c0{background:var(--rl);border-radius:5px;padding:0 5px}.bvi .c1,.bq .c1{background:var(--yl);border-radius:5px;padding:0 5px}.bvi .c2,.bq .c2{background:var(--gl);border-radius:5px;padding:0 5px;box-shadow:inset 0 0 0 1px var(--gb)}
+@media(max-width:560px){.mt .mr{grid-template-columns:1fr}}
+/* desktop: hero đủ cao để không cắt đầu nhân vật */
+@media(min-width:900px){.hero{min-height:clamp(340px,34vw,500px)}}
+/* desktop: ảnh không phóng quá khổ, tiêu đề dời sang phải để không che mặt nhân vật */
+@media(min-width:900px){
+  .hero{min-height:440px}
+  .hero{background:#dcd5c3}.hero .bgi{left:0;right:0;margin:0 auto;width:min(100%,1100px);animation:none;object-position:center top;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .hero .tt{padding-left:min(44%,380px)}
+  .hero h1{font-size:clamp(40px,4.6vw,60px)}
+}
+
+/* ---------- BẢN GV (…/gv/): hướng dẫn dạy + ghi chú từng câu, chỉ hiện khi đã mở khóa GV ---------- */
+.gvnote{display:none;margin:0 0 14px;padding:12px 16px;border-radius:12px;background:#fff6e0;border-left:5px solid #d99b26;font-size:14.5px}
+body.gv .gvnote:not(:empty){display:block}
+.gvnote>b:first-child{display:block;font:800 11px var(--f-body);letter-spacing:1.5px;text-transform:uppercase;color:#8a5a00;margin-bottom:4px}
+.gvnote ul{margin:4px 0;padding-left:18px}
+.tnote{margin-top:8px;padding-top:6px;border-top:1px dashed #b9cfb2;font-size:13.5px;color:#5a4a1a}
+.tnote b{font:800 10.5px var(--f-body);letter-spacing:1.4px;text-transform:uppercase;color:#8a5a00;margin-right:6px}
+body.gvpage .hero .kick{background:#d99b26;color:#3a2700}
+@media print{.gvnote:not(:empty){display:block!important;break-inside:avoid;font-size:9.5pt;background:none;border-left:3px solid #8a5a00;padding:2mm 3mm}.tnote{font-size:9pt}}
+:root{--paper:#FFF9F3;--ink:#1C2640;--ink2:#454d62;--mute:#727889;--line:#dbd7d6;--g:#22508F;--gl:#e2e8f0;--gb:#c1cee0;--y:#F07B4F;--yl:#fce7df;--yb:#f8c4b0;--yd:#8b472e;--yt:#c56541;--r:#B53D78;--rl:#f4e2eb;--rb:#e5bbd0;--bg:#0d111d;--cine:#070a10;--sh:28,38,64;}</style>
+</head>
+<body>
+<header class="hero">
+  <img class="bgi" src="../img/ref-cast.jpg" alt="">
+  <div class="wrap">
+    <div class="tt"><div class="kick">TEACHER EDITION</div><h1>Lesson 14 · Feelings, Health &amp; Likes</h1><div class="au">Homework worksheet</div><div class="meta">English A2 · after class</div></div>
+    <div class="qrbox"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 410 410" class="segno"><g transform="scale(10)"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1c2640" d="M2 2.5h7m1 0h3m1 0h3m2 0h3m4 0h5m1 0h7m-37 1h1m5 0h1m7 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m3 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m3 0h1m2 0h7m2 0h2m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h2m2 0h2m1 0h1m4 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h4m1 0h1m4 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m5 0h1m1 0h5m2 0h1m4 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h3m2 0h2m1 0h3m1 0h1m1 0h3m1 0h3m-29 1h1m3 0h1m1 0h3m1 0h2m1 0h1m4 0h1m3 0h1m1 0h1m2 0h1m1 0h5m2 0h1m-37 1h5m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h3m2 0h2m1 0h3m2 0h4m-35 1h2m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m3 0h1m2 0h5m1 0h3m-32 1h3m2 0h1m1 0h1m1 0h1m4 0h1m2 0h2m2 0h2m1 0h1m4 0h1m1 0h1m2 0h2m-34 1h2m2 0h1m1 0h1m3 0h2m1 0h3m1 0h5m2 0h6m1 0h4m-35 1h2m1 0h1m1 0h3m4 0h2m1 0h2m4 0h1m1 0h1m1 0h1m4 0h2m-34 1h1m3 0h4m1 0h1m2 0h1m2 0h1m2 0h1m1 0h4m1 0h1m1 0h1m3 0h4m-35 1h1m1 0h3m3 0h2m1 0h1m3 0h2m2 0h3m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m-37 1h2m3 0h2m1 0h2m2 0h3m1 0h1m2 0h2m2 0h2m4 0h3m1 0h4m-32 1h1m5 0h1m1 0h2m2 0h3m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m-35 1h3m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m3 0h3m1 0h1m1 0h1m-34 1h4m3 0h2m1 0h2m1 0h1m1 0h3m1 0h3m1 0h2m1 0h1m1 0h1m2 0h1m2 0h2m-36 1h1m1 0h1m1 0h3m1 0h2m1 0h2m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m1 0h4m2 0h1m-35 1h1m2 0h3m1 0h5m2 0h3m1 0h1m2 0h1m1 0h1m1 0h3m3 0h2m2 0h1m-35 1h2m2 0h2m1 0h3m2 0h1m1 0h1m1 0h1m5 0h1m1 0h1m1 0h3m1 0h4m-35 1h2m2 0h2m1 0h1m5 0h1m1 0h1m1 0h4m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-35 1h2m2 0h1m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m3 0h1m5 0h1m1 0h2m1 0h3m-36 1h2m1 0h2m3 0h2m3 0h2m1 0h2m1 0h3m1 0h2m1 0h2m4 0h1m1 0h1m-32 1h2m1 0h1m3 0h1m1 0h1m3 0h3m1 0h1m2 0h5m1 0h2m-26 1h1m5 0h1m1 0h2m2 0h2m2 0h1m1 0h1m3 0h3m2 0h1m1 0h3m-37 1h2m4 0h1m1 0h2m4 0h2m1 0h1m1 0h3m6 0h7m1 0h1m-29 1h4m3 0h1m1 0h2m4 0h1m2 0h3m3 0h1m-33 1h7m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h7m1 0h1m1 0h1m1 0h1m2 0h1m-36 1h1m5 0h1m5 0h5m3 0h2m1 0h1m2 0h3m3 0h5m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h1m2 0h2m2 0h1m4 0h7m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m7 0h2m1 0h7m1 0h3m4 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m1 0h6m-31 1h1m5 0h1m3 0h1m3 0h8m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m-36 1h7m1 0h1m2 0h2m3 0h3m1 0h5m2 0h1m1 0h1m1 0h1m2 0h3"/></g></svg><small>Scan to do it online</small></div>
+  </div>
+</header>
+<div class="mode"><div class="wrap" id="modeBar"></div></div>
+<div class="wrap info">
+  <div class="card">
+    <div><label for="fN">Full name</label><input class="inp" id="fN" autocomplete="off" placeholder="Your name"></div>
+    <div><label for="fL">Class</label><input class="inp" id="fL" placeholder="12A1"></div>
+    <div><label for="fG">Team</label><input class="inp" id="fG" list="teams" placeholder="Team …"><datalist id="teams"></datalist></div>
+  </div>
+  <p class="intro"><b>Part A</b> is your homework for Lesson 14. <b>Part B</b> gets you ready for Lesson 15. Your answers save on this phone. When you finish, tap <b>Submit</b> and send the link to your teacher <b>before 22:00 the day before Lesson 15</b>. On time = <b>+2 XP</b>.</p>
+</div>
+<nav class="nav"><div class="wrap" id="nav"></div></nav>
+<main class="wrap" id="app"></main>
+<div class="wrap actions">
+  <div class="card">
+    <h3>Worksheet complete</h3>
+    <p data-stud>Your answers save on this phone. Tap <b>Submit</b> to get a result link and send it to your teacher.</p>
+    <div class="row">
+      <button class="b p" data-do="send" data-stud>Submit · get your result link</button>
+      <button class="b" data-do="a4">Print / PDF · A4</button>
+      <button class="b" data-do="a5">In · A5</button>
+      <button class="b sm" data-do="reset" data-stud style="background:none;color:var(--mute)">Start again</button>
+    </div>
+  </div>
+</div>
+<footer class="foot">Lesson 14 · Feelings, Health &amp; Likes · English for Everyone Level 2 Units 7 and 11 <span class="ponly">Online: https://haha258369.github.io/english-a1-a2-worksheets/a2/lesson14/</span></footer>
+
+<div class="modal" id="mSend"><div class="card">
+  <button class="x" aria-label="Close">×</button>
+  <h3>Send your result to your teacher</h3>
+  <p style="margin:0 0 8px;font-size:14px">This is your <b>result link</b> with all your answers. Copy it and send it to your teacher (Zalo, Messenger, email).</p>
+  <p class="warn" id="sWarn"></p>
+  <textarea id="sLink" readonly onclick="this.select()"></textarea>
+  <div class="row" style="justify-content:flex-start;margin-top:10px">
+    <button class="b p" data-do="copy">Copy link</button>
+    <button class="b y" data-do="share" id="bShare">Share…</button>
+    <button class="b" data-do="mail">Email</button>
+    <button class="b" data-do="qr">Show QR code</button>
+  </div>
+  <div id="qrOut"></div>
+  <p style="font-size:12px;color:var(--mute);margin:10px 0 0">Your answers are inside the link (after #), not on a server. Changed something? Submit again for a new link.</p>
+</div></div>
+
+<div class="modal" id="mSum"><div class="card" style="width:min(980px,100%)">
+  <button class="x" aria-label="Close">×</button>
+  <h3>Collect results</h3>
+  <p style="margin:0 0 8px;font-size:14px">Paste the result links here (a whole chat message is OK – links are found automatically).</p>
+  <textarea id="sumIn" placeholder="https://…#r=z…"></textarea>
+  <div class="row" style="justify-content:flex-start;margin-top:10px"><button class="b p" data-do="read">Read &amp; score</button><button class="b" data-do="csv" id="bCsv" style="display:none">Download scores (.csv)</button></div>
+  <div id="sumOut"></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script id="wsdef" type="application/json">{"id": "a2-l14", "title": "Lesson 14 · Feelings, Health &amp; Likes", "url": "https://haha258369.github.io/english-a1-a2-worksheets/a2/lesson14/", "teams": ["LAB", "IT"], "parts": [{"id": "p1", "short": "A1 · Listen", "title": "A1 · Listen at home: chunk summary", "meta": "Part A · about 15 minutes · no subtitles", "intro": "Watch and listen to Mandi from <i>The Biggest Loser<\/i> (1:00 – 2:14). Listen 2 or 3 times. For each line, write the missing phrase and the <b>time<\/b> (minute:second, like 1:05) when you hear it. A few seconds early or late is OK.<div style=\"position:relative;aspect-ratio:16/9;max-width:560px;margin:10px 0 4px;border-radius:12px;overflow:hidden;background:#000\"><iframe src=\"https://www.youtube.com/embed/JLaEMSM5EWw?start=60&end=134&rel=0&cc_load_policy=0&playsinline=1\" title=\"The Biggest Loser · Mandi\" style=\"position:absolute;inset:0;width:100%;height:100%;border:0\" allow=\"accelerometer; encrypted-media; picture-in-picture\" allowfullscreen loading=\"lazy\"><\/iframe><\/div><a href=\"https://www.youtube.com/watch?v=JLaEMSM5EWw&t=60s\" target=\"_blank\" rel=\"noopener\" style=\"font-size:14px\">Open on YouTube (starts at 1:00)<\/a>", "items": [{"id": "k1", "type": "fill", "q": "<b>1.<\/b> The trainer asks a question.", "tpl": "“Physical or emotional or [[1]]?”<br>Time: [[2]]", "audio": null, "w": 11, "eg": "A line from the start of the clip: “Everyone <b>keep it rolling<\/b>.” → time <b>0:22<\/b> (example only, not in your list)"}, {"id": "k2", "type": "fill", "q": "<b>2.<\/b> Mandi is not at home with her family.", "tpl": "“[[1]] my kids, and missing them like crazy…”<br>Time: [[2]]", "audio": null, "w": 11}, {"id": "k3", "type": "fill", "q": "<b>3.<\/b> She misses her kids a lot.", "tpl": "“…and missing them [[1]]…”<br>Time: [[2]]", "audio": null, "w": 11}, {"id": "k4", "type": "fill", "q": "<b>4.<\/b> How does she feel?", "tpl": "“…when you’re feeling emotionally and mentally [[1]].”<br>Time: [[2]]", "audio": null, "w": 11}, {"id": "k5", "type": "fill", "q": "<b>5.<\/b> The trainer is kind to her.", "tpl": "“…the fact that you feel this way is a really good [[1]].”<br>Time: [[2]]", "audio": null, "w": 11}, {"id": "k6", "type": "fill", "q": "<b>6.<\/b> At the end she feels better.", "tpl": "“I do feel [[1]] than I did before.”<br>Time: [[2]]", "audio": null, "w": 11}, {"id": "k7", "type": "fill", "q": "<b>7. (extra)<\/b> Her last sentence.", "tpl": "“I’m just not there [[1]].”<br>Time: [[2]]", "audio": null, "w": 11, "optional": true}]}, {"id": "p2", "short": "A2 · Meanings", "title": "A2 · Careful! What does it mean?", "meta": "Part A · 5 minutes", "intro": "Choose the meaning that fits the situation. Some English sentences do not mean what the words say.", "items": [{"id": "m1", "type": "choice", "q": "<b>1.<\/b> Your colleague says: “My arm is killing me.”", "opts": ["Someone wants to hurt her arm.", "Her arm hurts a lot.", "Her arm is dead."], "audio": null, "eg": "“I’m starving.” → <b>I’m very hungry.<\/b>"}, {"id": "m2", "type": "choice", "q": "<b>2.<\/b> Tom writes: “I’m under the weather today. I’m working from home.”", "opts": ["It is raining on Tom.", "Tom feels a bit ill.", "Tom likes cold weather."], "audio": null}, {"id": "m3", "type": "choice", "q": "<b>3.<\/b> Before a big presentation your friend says: “Break a leg!”", "opts": ["Good luck!", "Be careful!", "Go to the hospital!"], "audio": null}, {"id": "m4", "type": "choice", "q": "<b>4.<\/b> A pale colleague says in a loud, short voice: “I’m FINE.” She probably…", "opts": ["feels great.", "is not fine. Ask again, kindly.", "wants to buy a coffee."], "audio": null}]}, {"id": "p3", "short": "A3 · Book", "title": "A3 · Your book: feelings, health problems", "meta": "Part A · English for Everyone Level 2 · Unit 7 (pp. 33, 35) · Unit 11 (pp. 44–45) · 20 minutes", "intro": "These exercises are from your book. Every exercise starts with an <b>Example<\/b>. Tap the audio in the Example to hear the model sentence. Only exercise C (7.6) is a real listening exercise.", "items": [{"id": "b1", "type": "match", "q": "<b>A · 7.4 Match the feelings to their opposites.<\/b> (p. 33)", "left": ["excited", "angry", "nervous", "relaxed", "pleased"], "right": ["calm", "miserable", "bored", "stressed", "confident"], "eg": "happy → <b>sad<\/b>"}, {"id": "b2", "type": "fill", "q": "<b>B · 7.5 Fill in the gaps<\/b> with <i>is / are / am feeling<\/i>. (p. 33)", "tpl": "Ben [[1]] bored.", "audio": null, "w": 11, "eg": "We <b>are feeling<\/b> nervous.<audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_5_eg_a_us.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b3", "type": "fill", "q": "Fill in the gaps.", "tpl": "Luis [[1]] irritated.", "audio": null, "w": 11}, {"id": "b4", "type": "fill", "q": "Fill in the gaps.", "tpl": "I [[1]] sad.", "audio": null, "w": 11}, {"id": "b5", "type": "fill", "q": "Fill in the gaps.", "tpl": "You [[1]] calm.", "audio": null, "w": 11}, {"id": "b6", "type": "fill", "q": "Fill in the gaps.", "tpl": "Kate and I [[1]] happy.", "audio": null, "w": 11}, {"id": "b7", "type": "fill", "q": "Fill in the gaps.", "tpl": "Gina [[1]] confident.", "audio": null, "w": 11}, {"id": "b8", "type": "fill", "q": "Fill in the gaps.", "tpl": "We [[1]] excited.", "audio": null, "w": 11}, {"id": "b9", "type": "fill", "q": "Fill in the gaps.", "tpl": "I [[1]] tired.", "audio": null, "w": 11}, {"id": "b10", "type": "choice", "q": "<b>C · 7.6 Listen and answer.<\/b> Listen to the speaker. Is the sentence about the speaker true or false? Jill is feeling happy. (p. 33)", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_1_uk.mp3", "eg": "“Jack is feeling confident.” → <b>False<\/b><audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_eg_uk.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b11", "type": "choice", "q": "Sami is feeling nervous.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_2_us.mp3"}, {"id": "b12", "type": "choice", "q": "Ian is feeling bored.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_3_uk.mp3"}, {"id": "b13", "type": "choice", "q": "Lindi is feeling annoyed.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_4_us.mp3"}, {"id": "b14", "type": "choice", "q": "Jenny is feeling happy.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_5_us.mp3"}, {"id": "b15", "type": "choice", "q": "Jimmi is feeling excited.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_6_uk.mp3"}, {"id": "b16", "type": "choice", "q": "Minna is feeling scared.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_7_uk.mp3"}, {"id": "b17", "type": "choice", "q": "Aziz is feeling tired.", "opts": ["True", "False"], "audio": "../https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_6_8_us.mp3"}, {"id": "b18", "type": "fill", "q": "<b>D · 7.11 Fill in the gaps<\/b> using the words in the panel. (p. 35) Word panel: <i>sad · happy · bored · angry · excited · nervous<\/i> (<i>happy<\/i> is used in the example).<br>I’m at the airport. I’m waiting for the flight. I don’t have a book. There’s nothing to do.", "tpl": "I’m really [[1]].", "audio": null, "w": 11, "eg": "I’m having a great day at the beach. All my friends are here and we’re playing volleyball. I’m really <b>happy<\/b>.<audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/7/b2_c_7_11_eg_a_uk.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b19", "type": "fill", "q": "I’m watching a movie on TV. It’s a love story. The man and his wife are in different countries.", "tpl": "They’re very [[1]].", "audio": null, "w": 11}, {"id": "b20", "type": "fill", "q": "We’re at the concert. We’re waiting for my favorite band in the world to come on stage. We’re at the front.", "tpl": "I’m so [[1]].", "audio": null, "w": 11}, {"id": "b21", "type": "fill", "q": "I’m at the supermarket. There’s no milk, no butter, no flour, and no sugar. All the things that I need for the cake.", "tpl": "I’m so [[1]].", "audio": null, "w": 11}, {"id": "b22", "type": "fill", "q": "I’m waiting to meet my new boss. She’s talking to everyone in the office. I don’t know what to say to her.", "tpl": "I’m very [[1]].", "audio": null, "w": 11}, {"id": "b23", "type": "text", "q": "<b>E · 11.2 Rewrite the sentences, correcting the errors.<\/b> (p. 44) My brother isn’t feel very well this morning.", "ph": "Write the correct sentence", "eg": "Hilary not feeling well. → <b>Hilary’s not feeling well.<\/b> She’s at the doctor.<audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/11/b2_c_11_2_eg_a_uk.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b24", "type": "text", "q": "George are sick, so he’s staying in bed today.", "ph": "Write the correct sentence"}, {"id": "b25", "type": "text", "q": "I is sick, so I’m not going to work.", "ph": "Write the correct sentence"}, {"id": "b26", "type": "text", "q": "Ayshah doesn’t feeling well, so she’s going home.", "ph": "Write the correct sentence"}, {"id": "b27", "type": "text", "q": "Luca and Ben isn’t feeling well today.", "ph": "Write the correct sentence"}, {"id": "b28", "type": "fill", "q": "<b>F · 11.5 Fill in the gaps<\/b> using the words in the panel. (p. 45) Word panel: <i>headache · toothache · pain · broken · hurts<\/i> (<i>headache<\/i> is used in the example).", "tpl": "Mary’s back [[1]].", "audio": null, "w": 11, "eg": "I have a bad <b>headache<\/b>.<audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/11/b2_c_11_5_eg_a_us.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b29", "type": "fill", "q": "Fill in the gaps.", "tpl": "John has a [[1]] leg.", "audio": null, "w": 11}, {"id": "b30", "type": "fill", "q": "Fill in the gaps.", "tpl": "I’ve got a [[1]] in my finger.", "audio": null, "w": 11}, {"id": "b31", "type": "fill", "q": "Fill in the gaps.", "tpl": "She has a terrible [[1]].", "audio": null, "w": 11}, {"id": "b32", "type": "choice", "q": "<b>G · 11.6 Mark the sentence that is correct.<\/b> (p. 45)", "opts": ["I have a pain in my arm.", "I am a pain in my arm."], "audio": null, "eg": "<b>She has a broken leg.<\/b> / She have a broken leg.<audio controls preload=\"none\" src=\"https://apps-api.dk.com/efe/audio/b2/c/11/b2_c_11_6_eg_a_us.mp3\" style=\"display:block;width:100%;max-width:420px;height:36px;margin-top:6px\"><\/audio>"}, {"id": "b33", "type": "choice", "q": "Mark the correct sentence.", "opts": ["John has got an earache.", "John has got a earache."], "audio": null}, {"id": "b34", "type": "choice", "q": "Mark the correct sentence.", "opts": ["He has a head hurt.", "His head hurts."], "audio": null}, {"id": "b35", "type": "choice", "q": "Mark the correct sentence.", "opts": ["Aziz has got a pain in his back.", "Aziz has got a pain on his back."], "audio": null}]}, {"id": "p4", "short": "A4 · Speak & write", "title": "A4 · Speak, write and use it for real", "meta": "Part A · about 25 minutes · record yourself", "intro": "Use the English from the lesson for real. Record with your phone voice recorder and keep the files. Send them to your teacher if she asks.", "items": [{"id": "s1", "type": "check", "q": "<b>A · Record 8 answers<\/b> (1 minute). Answer each question aloud in a full sentence, in a caring voice ↘:<ol style=\"margin:8px 0 0 18px;line-height:1.55\"><li>How are you feeling today?<\/li><li>What’s wrong? (you have a headache)<\/li><li>Does your back hurt?<\/li><li>Do you feel dizzy?<\/li><li>Do you have a fever?<\/li><li>Where does it hurt?<\/li><li>What do you like doing after work?<\/li><li>Would you like some water?<\/li><\/ol>", "list": ["I recorded my 8 answers", "I used a caring voice (stress one word, go down)"], "pass_": 2, "medal": "Voice ready"}, {"id": "s2", "type": "check", "q": "<b>B · Record 2 situations<\/b> (30 seconds each). Choose 2 from the list. Ask → listen → act → reassure.<ul style=\"margin:8px 0 0 18px;line-height:1.55\"><li><b>Lab:<\/b> a patient says “I’m fine” but looks pale · a colleague feels dizzy at the bench · a patient is scared of needles<\/li><li><b>IT:<\/b> your child is ill: ask your boss to leave at three · your boss asks “Is it urgent?” · it’s 5 p.m. on Friday and you feel burned out<\/li><li><b>At home:<\/b> your flatmate or your child is ill at 6:30 a.m.<\/li><\/ul>", "list": ["I recorded situation 1", "I recorded situation 2", "I recorded 1 situation at home (extra)"], "pass_": 2, "medal": "Situation speaker"}, {"id": "s3", "type": "long", "q": "<b>C · Write a sick-day message to your boss<\/b> (about 25 words). Say you’re not feeling well, what you have, ask politely (Can I…?), give a reason and a plan.", "rows": 4, "lines": 4, "words": "20,30", "ph": "Hi …, I’m not feeling well. I have …", "eg": "Hi Dr. Brown, I’m not feeling well. I have a headache and a sore throat. Can I leave early today? Lan can cover my bench. Thank you."}, {"id": "s4", "type": "check", "q": "<b>D · Use it for real.<\/b> Today, ask one real person: <b>“How are you feeling?”<\/b> (a message or a voice message).", "list": ["I asked one real person", "I listened to the answer and said one kind sentence (Take it easy. / Get well soon!)"], "pass_": 2, "medal": "Caring friend"}, {"id": "s5", "type": "text", "q": "What did the person say? Write one sentence (optional).", "ph": "She said: I’m a bit tired.", "optional": true}]}, {"id": "p5", "short": "B · Lesson 15", "title": "B · Get ready for Lesson 15 · Weather &amp; getting around", "meta": "Part B · about 15 minutes · before Lesson 15", "intro": "Do this <b>before Lesson 15<\/b>. Submit by <b>22:00 the day before class<\/b>: on time = <b>+2 XP<\/b>.", "items": [{"id": "g1", "type": "check", "q": "<b>A · Practise on Quizlet<\/b> (about 10 minutes). Open your set: <a href=\"https://quizlet.com/user/msha258369/folders/english_a1-a2_lab-it\" target=\"_blank\" rel=\"noopener\">Lab set<\/a> · <a href=\"https://quizlet.com/user/msha258369/folders/english_a1-a2_lab-it\" target=\"_blank\" rel=\"noopener\">IT set<\/a>. Mix it with your older sets when you can.", "list": ["I opened my set", "I practised all the cards once", "I can say 5 sentences without looking"], "pass_": 2, "medal": "Ready!"}, {"id": "g2", "type": "long", "q": "<b>B · Your question.<\/b> Ask your teacher one question about English at work (a word, a sentence, a situation). We answer it at the start of Lesson 15.", "rows": 3, "lines": 3, "ph": "My question: …", "eg": "How do I talk about the weather with a patient? · Is “It’s a bit cold” polite?"}]}], "gv": true}</script>
+<script id="wskey" type="text/plain">UrNszFhe75rHNPm9NXaF32BOSvcx7tdInhxw5rSRf6MDYAf83hyJSd6_06oZ9ube0m-cPSgqhIDtZ66D5gnS4692J9KuGDzIad3hqng7jp31XEiAVfK9GJXPY_-HQEuxZ6pMAuAYuvdC2ROYdcub_SR197CIEp9BAjjsEq3vkZfJaCXPXYQjuw5A6sNOWp83Cp9BjOpiSXCtX5fgYnVKA6V-cXVFMyfY-pznpjwRhJ23ZcrbLJE_R2xjH_-HwAmZWIKx2IyHJG2mfxHku_fLzG50VenHNUoftye3taxMYfVCIGzgS9QtqCOyps3l8iturVmB8ayqWmBWX5gfyGLsPkt20PxTIB8gtWDNNl02F4dj0VHmQdNCqrE2tpvHaJ9c_0YY2kJSbI7chid8JizqfdilhTO6YBb0AwvlIViVWbiRKoGSbGQlKhLM1fEe9smTYFCbchZ03H5N-F0JK5YzBFlsAu5-4YAqRWiWmaZ-p36UUuDR6Di1emwDYE681SgwFyOkOhEOKV0kDnvQKy7TVxus44IyV6Ewks7D5QXVerKI9K1J-bzeHx4tpaQdvHSYUkgvhKZZeq9R2AzfOMRVFd2vZI6gXXZCdi8oEsI23fmg8z3egdGP3eqK7bJbUtqlCQ3-4l-e58I-nQS7LcHrNzsqUb982LlmfH-NmFwMfj4gX7ZNdiNwoSWDG5N2oawzQcwPm9KBOJ6uCdNonaVCSTs3vIUMHfO-DOKvqA138wz5PtudVukeNwpTZB1cBEOyPbkE0aG6lW7_qiQJa7raE_XuMZyFCXaGVCMALcLbnBDqLzt_TvHe3-C3Pu7v0zxaadUxz0cRhrh3HoTE0xKzBAXpYRZC_Dz9W6h9bamv_dEu5JqhUDH0SPfMhxTB64_lZg1EvVyiNH-nXFK907NxKZCudTeGgo71Fi_o4EDFwRWu_-A-bScfl2ec9wt5SohLvnSegF_TU-eFpKkPyZ19n3x0qrhavxZrOx4N-FNZ3vS-Jj4-RSULjamyvamNRvbCq1eOiUZTuY9QatRfTraI6lx3b7aRTMon5PD06cOeQxCeWVeD-xR2j1dYFQ6pXyN9mFG43ktuVS90syLrFfR1A3J0F8WX1DE9-oAI6fynRF2gSII-hxMmco4e6AknfbYWeD9qC2v1FXc0_DDv3tqlJKrq1IBYE1H7BO9zma-s8kmZnribysH-U9Tv92elqGO-paHD3EntOcb3J-IdLM_7-zA37onbkwbPrvsxdcFe2qwnP81YBXDYHYSL8-igDroqDZRQIIC_v9GIY1b1TYXbpd6Mj3vt-ztCkzdGsuTSPN95zwWxN8OIVrRAlevTFldltbxymvz5xitKU7X8zSZ5XT2pfpGdLxC374XVl4zGR6siBz4Sd4FZxjQw_UQwoX0gkW28GodthOZnim7KaoRErPzOB5jGr2aJfXDI6KQEJ0m5QW9Na5TB7lr_R_axiOKidi8YJnFeb632_hZECDfvmWqCEt0iroU7IhHx4LBud4Ndv3ISABOMB3MqxROipdB6WYng7Uj2zZKHXrN9cjyw3FEiDFGcoqSGQUwyBfVTYiql4gy65xTUiPip1k7JRtRcggbUZ4qtYT5pYixARv2ZQAojE13APRNuEuA2d1QLc9Wh4V8-xt7pYxZ4KhvkIpG4PgxoM78a3W_Qfj-OaFhccx5qGlPIygnwiKXeNm3hIj2eISnMUSJxXlWXIKQ0q7W0hehv89Ad49GUlBSvabX3GyHy7iZnjbe9QwCWf5RwFWwAUGVkhk2YIJ3q-5z0Rvm0A-wqW6Lp-VUhBqsacddZ68cR8Catb5dIlNFwy3Vy6ud4u0Ew59sGUfABMS_djKgXXD1HMUAwQX0qmf1xFqP9KxVO_pfydQocb1NHJ-L42D9DdpiPoosO84fgykgULtJ_KneSqzfqxrTJGreAZ-8ReAYcxrowLYFZb88p0kdOSaSjGxgwMlqPMjBeQU86PT0NMn6JvknwbrRYHkAi3RdV-vmbuTr1M_IbNyq3Wk_5VW40S-g4zsicQRSNt1AgsHKPc_g_autPohyRbjxa2Mqf0MSdk4lOlLc9HLTGMg0QW-DSruLD0XKZPpY7vu4PgJnRC_P0C8jinYyW05XdS5eIS4UNU-S6Yoh6BFUbtwrNxazvpuz9FmiLJRc0QLDChtBqLRVVy9W-XQyRN9R_aDJ6EkuSJp7WeAvV7rUXErfc20K1FbqxPDp3dI4-ZNytlEVgyMcUE-HLuunC9M5n7z9zGborYZ02ATejP8pc7nvp20EqbX92B334egilk_NWU5cjjtkANpy0YqLlmqRc5ee4G8DxoQUUOPvUqhUyvNQYlVZhXoa3PEsFxtkkcMChVwIy02t4sUMDuk3BHE3l2PJBnXzC3bnL-lgyesgozpa2yATAFE6z82o2bPwfmRG1G2yE_72mDJ1bJeblVhkTjtvfbXzPoOtcDJdEN9NOY0k-c1ueMZIHgMCEKjw_sXi_nhqC7co8Gf7yioKxQ18NNFXu5E8gI-S9EMNuIiwNSsJ1M28ieI1sY5w078oaJiXxsMj6RP3SLS_mA4vTSjLgUM9PNeQsX8fAkt9KG96ypbAc4vhSrRd12OJ1NCO4aAJ2-YvyoHIPc2t6NNQ0igQ8_cTdeW3K_ugKJO7PY_unBvMtSL8GTpUUI7nxxZqstjRl3HwR4uwEAtcSb6UI8TGKWOpc8qNnA23z7eeixuVVHyaZPCtiacKbg2uOmBhLs5Su1q9Wak6Kqp8aACmVhv0tRr0RwViabmCm-FtwB2qo4bR5Rkk2Yo5iB5TrFUuSsJVFG4INWPmDDJ44gKUiwzrUmIynn5vNoZw26vCTaM8KSnQBgqPrEx7npA1keMALPtrTAXXTcybvCidmhaN8TJ7R1Q6PcEf7iWbSQD2qYz0wXkgp00aafButQV9fWUjOF_6wDHAhPZFB__oDJs1Hq93-15S77fcwuOTDdfjc1zoawSskaHXJVh9wg-AJLI0y8ZJLskjyElALnclgeJDnz71L9ghnABj4EpzlNelWCjC29OUch6YvfU_cJeqB7YG9PwrAT2UMCKEoUrLcBqFdoVdRcAY4S4gfiomdUD4Q1m0MKa_-jYUwpiqWXuQKvvhkpn-N_vsrT9W2rdF5Bt59wP1ThZvEY8mFWKn-Hskr9FzMHBaZ7BDqfC5FVZ8V3UiH90KQ8YKgrHf-1RccY-8YvVS42NMG5WGUC6UdyHAGmKZGa4NmCSjHbP5h_DhEkvuDC4a46BxRcIubz1hHZT59P-CrVuuE1-uXCnckBidAvuXCY7X72y-v17pCLCi_4NB7K2HXdCzGkmtc53PfYxw-4EvcjGUrPfVcBJtYatz-sy6fnMADZJOULrEqsN4VAmzSwhpzUISGJj9BjKe57cbWMNOiuQrXj1NacAn15CEfDXj_gvVNFJtNqrzYPQigDbdCp9HrMS0guPQvu33oxuyzj524v8Th6QRXaULUkBZRmh-Jv-EDoo3pUtUDEULMP90Cd-7YJ_H5FRuoEPL25cID6HuAKovpFCgyQAlD7nYvCgV6q6bctIbBOKN-u4dUUUSKtzP3TRXntjKFzXaeub0q3ZpinFUN5SemDAl0Ck1-63gJ3kMD8vAjbub-TtLBzW4KqiF3TXkvvwd_0L0S5H1l6HMpX_b0mVckheRTOLUksjNRkwnLdy_z3Co4_OSNKh0vSPumGHjy1l293QM5xDAeKwDcC9HS9jvhf9E2a6Khvd7tWRnA2AolaGYM9ST2_ljf6Gf7tNjeLj7IUPfzm08n8_lbx5TWLbJifXyf3tNE-Gg7U85qusD4QznBTEtCfdEALy3dlr4xGH9bd4vSl-OBKWM00ltpNzTSa3M8-VRd72zrlwqPuyQ8Hd2qsw9DwFG5HK-bjPz9mP6ZXC4X7hXyLHaJEt2hsodiM8J0k0yxvErqHQdb_TpRseNClj_lJsuSp5HdokagDHUtb6pTj4zHfsyB6IYBJ2mZLucJtlcMynxMMOIJShRkeBf9GJPFIu2-IT4MWsbLk-URL12qFZtPsfhwEHNX7rUXEjfZ3EDLZ-eezdubhXmK8kH8YhGvnmtjD2KEQGiUBr-f6Abgz0xBsOqpzoy25NtQAVD9QuWTlmEn6P1Dc0unDvN5MZWN_4SgLkSJG1TQPFh3MQ2ctVdDOtwImnPZhrQKCZSY_s84z40-kd7q9Z2-q2yc25JcUeQP--441OoN31_AOS6_NG-BVydF13XtAdfwcHyQZDbn_qjAIXf4UQ0axw_b-yFZ9IV2QgcSyLwSHzoET5zQm9ko1nb_e0yHg0xbse5jc8-VR-MfWoqW_KOcCbDFIX8jYrGGbfQTbzaZK5Va7Yf3Oma4GcUigk8ljP4ve4yrvhLiULQdS_NiRgWhqTfe6-aLaPFa7zRw3zOcLvsb7k0MSKNABSdGCJ8H-0WW4yZvRohSQBygIG-t-5hHnpEh9sKviAqg0HPksRS5MxM6sKwop_GB2VRgYg8QGU9WbRsQORtC02TfYY9yLZ-2cDtFtnCfi0x6K77AqSmMrpKA2Huflb-QkbpmjA2t-UIbOJfH-zsqy1CSaABJUKJlWGvwFY6y_wr016EHAAg7aYPQSvTtnA0qLlsbecjmC9Ks_zP_R0qsL4nacIfJlkwV5szBnO0oSiaidsK9CHtKcTiKITTNCtq7HcTUnCr9tiLRC9EWdVmHWkAH495ectsf6hxmMKAwB6trt01sbNHOgEEb3yKhYe0nKwrRCtNzo8Po4qJgEUOt7S4_tub0uQfj2y-e7zdUhkW_rz7-Xh3L19QaPH-5GeFxRFHf6ctCZUKvb83dHPXWYFiAcs02qRqr-GabghhpFgvPkM5di-Tfn88Su0Q-a-G1pYm1UwHu1NLqbRijTS2rNVWVvsgDtITN6LvuwFXmIIQgWtD5dfFD3fAjUUCxBcz4R6M1xcXfCWeokAObkfWT0xuBqsaB344T7ytF2xALq26i9oaIO_CNgDoXkPLxLN309krhhYhYYtJ9Qm4v4kLUoAkaXtCnvTWSZwiISAFb8542QmiTXhkmRVkNeJ845V1v9qputhjqDx5Ez1KqgLEJgRROjiTyHocz5k1TkRhkPexhgOvzqxbe9Lu9WpXnFD2leGTCZxfpV6fuYb6QoRaWH6Au-bDVfDGfAslL0Mjitk_FppWkPG6Rq7liJzVaniHAmc99u5tW6Y4vVzEf-U4eSi8y6mU3ZWpwH-lUPnYrpr9RAawIEZB2PdGn983yC90A8YZpuHU3r3W075LTL7QhwzEGScMrSbJDQ3rqrWnOYgmyCHRRNDA0oPz4S-RHBAY0T-m02XsGc4FF3Pc2MWiDxwZh896r7wFYwJ2PN1mltsZbHuUJGdJ9ZG3kxxaGSDfshPiaAYhTkBv1NfgUmVDxbTpNXnlB_V_pAoXakb9lUdH1DDRteNpeMgZDfN_-EV7uqz1L_cYkKQ5aK6Ap5Gevn8_f0COWkcuJ2N2Pxy13ZTZ2SZDZLl7i9xaCK6qq6jsX3jVz7SRJP_JNcsknnb4pKED-gLBdrAdpMdv_kPs5KNP72rz_cakhQIcwK-54_iXjFWXUY4xTPjdFHunYHLI4k42KO6cAEQlLyvGR-1kTJMIEXu5FmStQQe227C_Mra3mtRlUx2dvi17lc-g9uuZ33mwqQDvL-vNRHNc6MVEbsxtYXjy2Cix1HbXFEW8QWnWX2uNl2zepGm1nzANza0Mo2xlvSD2Bn5iBM4WP3kJt_zaG9ApLZDFLebTIgBP3wRPXFw4Li7gb07kknlC-Fb-HHUGd5tZvQWeUjU01T5Wbx44n48F1I0ngCrIWjcsarbSiVug24BhFrUZPdLVWD9tzeRlHVIVLVt1TGcKVGdv5s4oPMwbNz4ZWMb-kMVx-1bpOsGTd9oxq2MI__xYrXTTApUM2BkwCbzIePFPn9_WK94UvmzHDLMSe_wEGJFu2ugZWSnNFWebQG4bSa5MrnaOKaGnvHj66_SIjKWQQs-NjJHLmGWDNl_bKOWgr5MN5jZjdJCcPCEmh2aWPulNK9hE6DGvq4laATt1D6IgHshjw9aVw6IIEIVKiSZpewG-VabEvnqefqQ8hKbade7Da6lvpImDnHcKynJwG25J_3qL6gLci26Pl1kdkwaKDr-BoD7eFugrrohjKbr6Rvp-YIn4hxk0qzVV_dppGfX6dkVnseFMtqv24pIx2J1jCi9TAzy_6tfAjIYoNiBQBDN3X6Tah1XgaWsjFeyXQdsZ1fpYreucIySGvJ2b-KeO2bVcKLgsiJKPxGAyjpGhRWatsFM4XoUfiebjU9-XNbXniU8co0E2iVIbzVykkvTZJbFmaqV-bg9nePu9ol4_voN-q597mGylHj6FsSgN6L-WA-CZsM7H5YQWdwLiJyNfGOCUTFNEhc_S8NkcCijb5ei2Jy4dYnB3DaJyYYflPDif7Jx1qaAUpt5g5R9FOYDLMWLKYDk2EZ3xJGkS1Kti9GepT2E_v8B6l7wu2_XtCSsQmz6zoN3Y-Mg0WWnzr2RWLJG9BE2fBLOuFZcyOuYxxn8dnb2-z7D_GSPiXUPQtaszTUBf0XDTUKccXzsGGwffqxkk-YVWuxku1iCnRPLYr40i3-VNnrrFeYei_AWhFIRZTU8kWsfq_BHAfOYF6V4ZcsOxfDETAIRrZyqO6lLm_MWoNMEfxVM_f4GP46fNgO_m_lvj6gOsew86kMI4HF6B-OFxxGdpAU3MC6tcAixc7Q0dWnO0XAtb_Wa-qy4pZVPbdWuYkQ55O069WXb_CRDdoNglMq5ps7mGwi2hnrZ_z0alptD-aMh9PYHGZ_JlvdJ1BDvCJNT9LFeFOwWq9vUD5i00_LDvToLOLaaaFBG_noJ3dBK1q4nQhVRxZABtWufCnVByJKm9s199hW94Ikww07DOYMgIdbb91AudON1XqcgABohQmRCy2j-PvPDua-6RMMC-9HAQhsfwfcq7ZW6kDk-zNngH_fCMVBgNG5AJ7BF3Ka4qc7HOfP_wMMl0eYSRK0803NLDk-R7sM-vkdGms-s4ERHVZ8eYg7G1pLXYYJpHwIPVUFVEiuw-fwk4rKkwl1H4uavhxg-lqxdUhKEhgntX_-I7jO7o4Ps1_D8_m_miZABO97Wg3qpl1bDPoa5ZFM5RzoRgC_8t-tAjusxKfJhXciYQuqQMgO6xH8TyJ8E2GJIK6KAm8bHnYigFMLf2gnu1GpsqX0xXnQKjNWVl7X0C2ofpmM5XAXY3IYE_veM7FX1RXN1vn08QFqv0iKWhxkJmJvpfqqYOkiYecSExiDRb9Ac5o4aiQqz6RT84ysDL8X2jPdES-KdV3u_H4OYNM_xCaA6h7BlMFZntR__lzjVUbvyE6q3CI8A1xz9WxDHBh7yBIhy0nKpqy9s3usjoM478OtpXazXe_LdWJngh7RApHMm2ESYKwOg57-3UDXgGuy2QlBRfaGUaekYamCEQRNdbAhjMw4Wxbe6ITIxbpC5NgrP1FjuIM1Mu13S2ZOJT8G0XgXmm8SM8b_A2HCEBb7mDipn0ydGaNrd4FHsxoU52C44awO1AvhpQCbasq_aRK7Pjj9Ada69HtlaS5dUTSSfvimSV8MX-VUnKWAajU3RRp2i1XZ4PM9DrsYGy0OVcRBPOfIGANKjhlSdwo4LJjk_R_1w9ZDDJ3oQ-GyA_e78R528PFN4krLuWTCQ--M7Z4IwS8E5C2IDtOLKPAaKNVw02lpwio5_N3zPWfSIgBYiJyMeFEAIbq9TtgRJTFJQeQhQRwXzODzZuXprDeod9-ihsz8N2VmZo_bg0ziMgW9Kat7pY5DKwCkpOOKJTNoAyJJCr6U4VmTLCQkOSlYSZQtEyRD9QeU5wJL-qS4MJ6dUGeG07A288rup_vdKy56-_HjDn4xf35DJ3MEijMAe5Np0Bl0ahsIPoN9zbCtfYCMfcGCJZeWEgcH6fBphZmeRpvKYiE9Vf9uiAtkPDzNphRcFqg95CM0bYf8byoVqEyRxm4x_aOoWkStnMlAujUl0rIBs6DT_Jo4Xk9QfcHazAOZBUzPOwtp-DRAZQT86j_f-AYk9Ix3oUdVtNJGYA1G4XcZeSpZ9jKnyfECFUwCg281WTiy6NjWBrcTyPLMyFLvmCfq6GDWvTNkW9QaqJlJ08eH1vwd3ziOnPoAPmQgRxCxSljATcNW6JlToaIbXnNRVrIaC9b2-OTM0nXGWygVu595Xq2E9JvOoYq4vnWUI2U7M4CnimClvBbid-uKRmzGrJogP58DgFIwT-dLEDT3dSGpZRMImlkNxcwh6lNGFQxWnFl9knm9IF03TrkT_eUi6u_kh9WA0Z8tdXh30UoJAiGhaT1S8pC_L00P9BzPPPm-v5IVsYGrp8_vHAxSP0yWylKkpp1SvsYsOCR-1r5H0uhWqvebBlS-23cwMwEHNNbIVtCmFpi0cU4favNvw4Xkf3Bp-qjjh_pkMBYol67codUt7qRhfxXQvT9Kl9lTACcA58GL4IZGQyZP7lQNleJI7wxL6PshHeDkUJl0Fd45EHuyt1NpgQz6yumfxOKC48iqmI9eRUpjLn_8qNf4DV4ygcnbMlE30Vwv_qbaI7nC2VMJYP3LY42GZfDUqqEnVPXOFNX_Pz-gtu-</script>
+<script>/* Worksheet tương tác – skill cinematic-lesson-html.
+   HS: làm bài (tự lưu trên máy) → "Submit" tạo LINK KẾT QUẢ (dữ liệu nằm sau dấu #, không gửi lên máy chủ) → gửi GV.
+   GV: mở link có #gv=<khóa> một lần → giải mã đáp án (AES-GCM) · bản "open": đáp án không mã hóa, HS thấy luôn → xem đáp án, tự chấm result link, tổng hợp cả lớp.
+   Trang HS không chứa đáp án dạng đọc được. */
+(() => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const D = JSON.parse($('#wsdef').textContent);
+const ENC = (($('#wskey') || {}).textContent || '').trim();
+const OPEN = ENC.startsWith('open:');   // bản CÓ ĐÁP ÁN: đáp án không mã hóa, HS thấy luôn
+const LSK = 'ws-' + D.id, KEYK = 'ws-gv-' + D.id;
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const strip = s => String(s || '').replace(/<[^>]+>/g, '');
+const BASE = D.url || (location.origin + location.pathname);
+const H = new URLSearchParams(location.hash.slice(1));
+let K = null, RES = null, showAns = true;
+let st = LS.get(LSK, null) || { info: {}, a: {} };
+const ITEMS = []; D.parts.forEach((p, pi) => p.items.forEach(it => { it._p = pi; ITEMS.push(it); }));
+const BY = Object.fromEntries(ITEMS.map(i => [i.id, i]));
+const vals = () => (RES ? RES.a : st.a) || {};
+const save = () => { if (!RES) LS.set(LSK, st); };
+
+/* ---------- mã hóa / nén ---------- */
+const b64u = {
+  enc(u8) { let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+    return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); },
+  dec(s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; const b = atob(s); return Uint8Array.from(b, c => c.charCodeAt(0)); } };
+async function pipe(u8, T) { const s = new Blob([u8]).stream().pipeThrough(new T('deflate-raw')); return new Uint8Array(await new Response(s).arrayBuffer()); }
+async function pack(obj) { const u = new TextEncoder().encode(JSON.stringify(obj));
+  if (window.CompressionStream) { try { return 'z' + b64u.enc(await pipe(u, CompressionStream)); } catch (e) {} } return 'j' + b64u.enc(u); }
+async function unpack(s) { const u = b64u.dec(s.slice(1)); const raw = s[0] === 'z' ? await pipe(u, DecompressionStream) : u; return JSON.parse(new TextDecoder().decode(raw)); }
+async function unlock(k) { const ck = await crypto.subtle.importKey('raw', b64u.dec(k), 'AES-GCM', false, ['decrypt']);
+  const all = b64u.dec(ENC); const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: all.slice(0, 12) }, ck, all.slice(12));
+  return JSON.parse(new TextDecoder().decode(pt)); }
+
+/* ---------- chấm (chỉ khi có đáp án) ---------- */
+const norm = s => ' ' + String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').normalize('NFC').replace(/đ/g, 'd').replace(/[^a-z0-9가-힣]+/g, ' ').trim() + ' ';
+const compact = s => norm(s).replace(/ /g, '');   // so khớp tiếng Hàn: bỏ khoảng trắng và dấu câu
+function grade(it, v) {
+  const k = K && K[it.id]; if (!k) return null;
+  const pts = it.pts ?? 1; let s = null;
+  if (k.fa) { const a = Array.isArray(v) ? v : []; s = k.fa.filter((x, i) => (Array.isArray(x) ? x : [x]).some(y => compact(y) === compact(a[i]))).length / k.fa.length; }
+  else if (k.mp) { const m = v || {}; s = k.mp.filter((x, i) => m[i] !== undefined && +m[i] === x).length / k.mp.length; }
+  else if (k.eq && (Array.isArray(k.eq) ? k.eq : [k.eq]).some(y => compact(y) === compact(Array.isArray(v) ? v.join('') : v))) s = 1;
+  else if (k.kw || k.eq) { if (!k.kw) s = 0; else {
+    const t = norm(Array.isArray(v) ? v.join(' ') : v); const need = k.need || k.kw.length;
+    const f = k.kw.filter(w => (Array.isArray(w) ? w : [w]).some(a => t.includes(norm(a)))).length; s = Math.min(f / need, 1); } }
+  else if (k.ok !== undefined) { if (Array.isArray(k.ok)) { const sel = new Set(v || []); let hit = 0, bad = 0; sel.forEach(x => k.ok.includes(x) ? hit++ : bad++); s = Math.max(0, (hit - bad) / k.ok.length); }
+    else s = v === k.ok ? 1 : 0; }
+  else if (k.bins) { const m = v || {}; s = k.bins.filter((b, i) => +m[i] === b && m[i] !== undefined).length / k.bins.length; }
+  return s == null ? null : { s, pts, got: Math.round(s * pts * 100) / 100 };
+}
+function gradeAll(a) { const parts = D.parts.map(() => ({ got: 0, max: 0 })); let got = 0, max = 0;
+  ITEMS.forEach(it => { const g = grade(it, a[it.id]); if (g) { parts[it._p].got += g.got; parts[it._p].max += g.pts; got += g.got; max += g.pts; } });
+  const r = x => Math.round(x * 10) / 10; parts.forEach(p => p.got = r(p.got)); return { parts, got: r(got), max }; }
+
+/* ---------- dựng worksheet ---------- */
+function itemHTML(it, ii) {
+  const k = `data-k="${it.id}"`;
+  let w = '';
+  if (it.type === 'text') w = `<input class="inp" ${k} placeholder="${esc(it.ph || 'Write here…')}">`;
+  if (it.type === 'long') w = `<textarea class="inp" ${k} rows="${it.rows || 3}" placeholder="${esc(it.ph || 'Write here…')}"></textarea><div class="pv"></div><div class="lines" data-n="${it.lines || 3}"></div>`
+    + (it.words ? `<div class="meter" data-w="${it.words}"><i><b></b></i><span></span></div>` : '');
+  if (it.type === 'choice') w = `<div class="opts" ${k} ${it.multi ? 'data-multi="1"' : ''}>${it.opts.map((o, i) => `<button type="button" class="opt" data-i="${i}"><span class="bx"></span>${o}</button>`).join('')}</div>`;
+  if (it.type === 'sort') w = `<div class="sort" ${k}><div class="pool"></div><div class="bins" style="--nb:${it.bins.length}">${it.bins.map((b, bi) =>
+    `<div class="bin" data-b="${bi}"><h5>${b}</h5><div class="wl">Write the letter:<i></i><i></i></div></div>`).join('')}</div></div>`;
+  if (it.type === 'frame') w = `<div class="frame" ${k}>${it.lines.map((l, li) => `<div class="fl"><button type="button" class="tag t-${l.tone}" data-li="${li}" title="Tap to add a starter">${l.label}</button>
+    <div><textarea class="inp" data-li="${li}" rows="2" placeholder="${esc(strip(l.start))} …"></textarea><div class="pv"></div><div class="lines" data-n="2"></div></div></div>`).join('')}
+    <div class="prev"></div><div class="mini"><label><input type="checkbox" class="plain"> Colours off</label><span>Tap a colour label to add a sentence starter.</span></div>
+    ${it.words ? `<div class="meter" data-w="${it.words}"><i><b></b></i><span></span></div>` : ''}</div>`;
+  if (it.type === 'fill') w = `<div class="fill" ${k}>${it.bank ? `<div class="bank">${it.bank.map(b => `<span>${b}</span>`).join('')}</div>` : ''}<div class="ftpl">${it.tpl.replace(/\[\[(\d+)\]\]/g, (m, n) => `<input class="inp fi" data-bi="${n - 1}" size="${it.w || 9}" autocomplete="off" autocapitalize="off" spellcheck="false">`)}</div></div>`;
+  if (it.type === 'match') w = `<div class="mt" ${k}>${it.left.map((l, i) => `<div class="mr"><span class="ml">${l}</span><select class="inp" data-mi="${i}"><option value="">— match with —</option>${it.right.map((r, j) => `<option value="${j}">${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[j]} ${strip(r)}</option>`).join('')}</select></div>`).join('')}<div class="mlegend">${it.right.map((r, j) => `<span><b>${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[j]}</b> ${r}</span>`).join('')}</div></div>`;
+  if (it.type === 'back') w = `<div class="back" ${k}><div class="bvi">${it.vi}</div>${it.steps.map((s, si) => `<div class="bk"><span class="tag t-${s.tone || 'g'}">${'①②③④⑤⑥'[si]} ${si ? 'thêm vào trước' : 'cụm cuối'}</span><div><div class="bq">${s.vi}${s.hint ? `<small>${s.hint}</small>` : ''}</div><input class="inp bi" data-bi="${si}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Tiếng Hàn…"><div class="cum"></div></div></div>`).join('')}</div>`;
+  if (it.type === 'check') w = `<div class="cl" ${k} data-pass="${it.pass || it.list.length}">${it.list.map((c, i) => `<label><input type="checkbox" data-i="${i}"> <span>${c}</span></label>`).join('')}
+    <div class="sum"><b>0</b> / ${it.list.length} <span class="medal">${it.medal || 'Passed!'}</span></div></div>`;
+  return `<div class="it" data-id="${it.id}"><p class="q"><span class="qn">${ii + 1}</span><span>${it.q}${it.hint ? `<small>${it.hint}</small>` : ''}</span><span class="score"></span></p>${it.eg ? `<div class="eg"><b class="egl">${it.egl || 'Example'}</b> ${it.eg}</div>` : ''}${(it.img ? `<img class="qimg" src="${it.img}" alt="">` : '') + (it.audio ? `<div class="qaud"><audio controls preload="none" src="${it.audio}"></audio></div>` : '')}${w}<div class="ans"></div></div>`;
+}
+function render() {
+  $('#nav').innerHTML = D.parts.map((p, pi) => `${pi ? '<span class="sep"></span>' : ''}<a href="#${p.id}" data-pi="${pi}"><span class="dot"><span>${pi + 1}</span></span><span class="lab">${p.short || strip(p.title)}</span></a>`).join('') + '<span class="tot" id="tot"></span>';
+  $('#app').innerHTML = D.parts.map((p, pi) => `<section class="part" id="${p.id}"><div class="banner">${p.img ? `<img src="${p.img}" alt="" loading="lazy">` : ''}
+    <div class="bt"><div class="n">${String(pi + 1).padStart(2, '0')}</div><div class="m">${esc(p.meta || '')}</div><h2>${p.title}</h2></div>
+    <span class="pscore" style="position:absolute;z-index:3;right:18px;top:12px"></span></div>
+    <div class="pbody">${p.intro ? `<p class="pintro">${p.intro}</p>` : ''}<div class="gvnote"></div>${p.items.map(itemHTML).join('')}</div></section>`).join('');
+  $('#teams').innerHTML = (D.teams || []).map(t => `<option value="${esc(t)}">`).join('');
+}
+
+/* ---------- cập nhật từng ô ---------- */
+const words = s => (String(s || '').trim().match(/\S+/g) || []).length;
+function meter(m, n) { if (!m) return; const [lo, hi] = m.dataset.w.split(',').map(Number);
+  m.classList.toggle('ok', n >= lo && n <= hi); m.classList.toggle('over', n > hi);
+  $('b', m).style.setProperty('--w', Math.min(100, n / hi * 100) + '%'); $('span', m).textContent = `${n} words · target ${lo}–${hi}`; }
+function lines(box, txt) { const l = $('.lines', box); if (!l) return; const n = txt.trim() ? 1 : +l.dataset.n; l.innerHTML = '<i></i>'.repeat(n); const pv = $('.pv', box); if (pv) pv.textContent = txt; }
+function filled(it, v) {
+  if (v == null) return false;
+  if (it.type === 'text' || it.type === 'long') return !!String(v).trim();
+  if (it.type === 'choice') return it.multi ? v.length > 0 : true;
+  if (it.type === 'sort') return Object.keys(v).length === it.chips.length;
+  if (it.type === 'frame') return v.filter(x => String(x || '').trim()).length === it.lines.length;
+  if (it.type === 'check') return v.length > 0;
+  if (it.type === 'fill') return (v || []).filter(x => String(x || '').trim()).length >= (it.tpl.match(/\[\[\d+\]\]/g) || []).length;
+  if (it.type === 'match') return Object.keys(v).length === it.left.length;
+  if (it.type === 'back') return (v || []).filter(x => String(x || '').trim()).length === it.steps.length;
+  return false; }
+function paint(it) {
+  const el = $(`.it[data-id="${it.id}"]`), v = vals()[it.id];
+  if (it.type === 'text') $('.inp', el).value = v || '';
+  if (it.type === 'long') { const t = $('textarea', el); t.value = v || ''; lines(el, t.value); meter($('.meter', el), words(t.value)); }
+  if (it.type === 'choice') $$('.opt', el).forEach(o => { const i = +o.dataset.i, on = it.multi ? (v || []).includes(i) : v === i; o.classList.toggle('on', on); $('.bx', o).textContent = on ? '✓' : ''; });
+  if (it.type === 'sort') { const m = v || {}, pool = $('.pool', el); pool.innerHTML = ''; $$('.bin .chip', el).forEach(c => c.remove());
+    it.chips.forEach((c, ci) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.c = ci;
+      b.innerHTML = `<b>${String.fromCharCode(65 + ci)}</b>${c}`; const bi = m[ci];
+      if (bi !== undefined && $(`.bin[data-b="${bi}"]`, el)) $(`.bin[data-b="${bi}"]`, el).insertBefore(b, $(`.bin[data-b="${bi}"] .wl`, el)); else pool.append(b); }); }
+  if (it.type === 'frame') { const a = v || [];
+    $$('textarea', el).forEach((t, li) => { t.value = a[li] || ''; lines(t.parentNode, t.value); });
+    const pv = $('.prev', el); pv.innerHTML = '';
+    it.lines.forEach((l, li) => { const s = String(a[li] || '').trim(); if (!s) return; const sp = document.createElement('span'); sp.className = 'c' + l.tone; sp.textContent = s; pv.append(sp, ' '); });
+    meter($('.meter', el), words(a.join(' '))); }
+  if (it.type === 'fill') { const a = v || []; $$('.fi', el).forEach(i => { if (document.activeElement !== i) i.value = a[+i.dataset.bi] || ''; }); }
+  if (it.type === 'match') { const m = v || {}; $$('select', el).forEach(s => s.value = m[+s.dataset.mi] ?? ''); }
+  if (it.type === 'back') { const a = v || []; let cum = ''; $$('.bi', el).forEach((i, si) => { if (document.activeElement !== i) i.value = a[si] || ''; const x = String(a[si] || '').trim(); cum = x ? (x + ' ' + cum).trim() : cum; $$('.cum', el)[si].textContent = x ? '→ ' + cum : ''; }); }
+  if (it.type === 'check') { const a = v || [], cl = $('.cl', el); $$('input', cl).forEach(c => c.checked = a.includes(+c.dataset.i));
+    $('.sum b', cl).textContent = a.length; cl.classList.toggle('pass', a.length >= +cl.dataset.pass); }
+  el.classList.toggle('filled', filled(it, v));
+  if (K && RES) { const g = grade(it, v), sc = $('.score', el); if (g) { sc.textContent = `${g.got}/${g.pts}`; sc.className = 'score ' + (g.s >= 1 ? 's1' : g.s > 0 ? 's5' : 's0'); } }
+}
+let doneOnce = new Set(), booted = false;
+function progress() {
+  const a = vals(); let all = 0, fil = 0;
+  D.parts.forEach((p, pi) => { const req = p.items.filter(i => !i.optional); const f = req.filter(i => filled(i, a[i.id])).length; all += req.length; fil += f;
+    const pc = req.length ? Math.round(f / req.length * 100) : 100, dot = $(`.nav a[data-pi="${pi}"] .dot`);
+    dot.style.setProperty('--p', pc); dot.classList.toggle('done', pc === 100);
+    if (pc === 100 && !doneOnce.has(pi)) { doneOnce.add(pi); if (booted && !RES) confetti(); } else if (pc < 100) doneOnce.delete(pi); });
+  $('#tot').textContent = RES ? '' : `Done ${all ? Math.round(fil / all * 100) : 0}%`;
+  if (K && RES) { const g = gradeAll(a); g.parts.forEach((p, pi) => { $$('.pscore')[pi].textContent = p.max ? `${p.got}/${p.max}` : ''; }); const t = $('#gTot'); if (t) t.textContent = `${g.got} / ${g.max} điểm gợi ý`; }
+}
+function paintAll() { ITEMS.forEach(paint); progress(); const i = (RES ? RES.i : st.info) || {}; $('#fN').value = i.n || ''; $('#fL').value = i.l || ''; $('#fG').value = i.g || ''; }
+
+/* ---------- tương tác ---------- */
+let sel = null;
+function setV(id, v) { st.a[id] = v; save(); paint(BY[id]); progress(); }
+document.addEventListener('input', e => {
+  if (RES) return; const t = e.target;
+  if (t.matches('#fN,#fL,#fG')) { st.info = { n: $('#fN').value, l: $('#fL').value, g: $('#fG').value }; save(); return; }
+  const fl = t.closest('.fill, .back');
+  if (fl && t.matches('input')) { const id = fl.dataset.k, a = (st.a[id] || []).slice(); a[+t.dataset.bi] = t.value; st.a[id] = a; save(); paint(BY[id]); progress(); return; }
+  const fr = t.closest('.frame');
+  if (fr && t.matches('textarea')) { const a = (st.a[fr.dataset.k] || []).slice(); a[+t.dataset.li] = t.value; st.a[fr.dataset.k] = a; save();
+    const it = BY[fr.dataset.k]; lines(t.parentNode, t.value); const pv = $('.prev', fr); pv.innerHTML = '';
+    it.lines.forEach((l, li) => { const s = String(a[li] || '').trim(); if (!s) return; const sp = document.createElement('span'); sp.className = 'c' + l.tone; sp.textContent = s; pv.append(sp, ' '); });
+    meter($('.meter', fr), words(a.join(' '))); $(`.it[data-id="${it.id}"]`).classList.toggle('filled', filled(it, a)); progress(); return; }
+  if (t.dataset.k && BY[t.dataset.k]) { st.a[t.dataset.k] = t.value; save(); const el = t.closest('.it');
+    if (t.tagName === 'TEXTAREA') { lines(el, t.value); meter($('.meter', el), words(t.value)); }
+    el.classList.toggle('filled', filled(BY[t.dataset.k], t.value)); progress(); }
+});
+document.addEventListener('change', e => {
+  if (RES) return; const t = e.target;
+  if (t.matches('.plain')) { $('.prev', t.closest('.frame')).classList.toggle('plain', t.checked); return; }
+  const cl = t.closest('.cl'); if (cl) setV(cl.dataset.k, $$('input:checked', cl).map(c => +c.dataset.i));
+  if (t.matches('select[data-mi]')) { const box = t.closest('.mt'), m = { ...(st.a[box.dataset.k] || {}) }; if (t.value === '') delete m[+t.dataset.mi]; else m[+t.dataset.mi] = +t.value; setV(box.dataset.k, m); }
+});
+document.addEventListener('click', e => {
+  const t = e.target;
+  const ac = t.closest('[data-do]'); if (ac) { DO[ac.dataset.do](ac); return; }
+  if (t.closest('.modal') && (t.classList.contains('modal') || t.closest('.x'))) { t.closest('.modal').classList.remove('show'); return; }
+  if (RES) return;
+  const o = t.closest('.opt'); if (o) { const box = o.closest('.opts'), it = BY[box.dataset.k], i = +o.dataset.i;
+    if (it.multi) { const a = (st.a[it.id] || []).slice(); a.includes(i) ? a.splice(a.indexOf(i), 1) : a.push(i); setV(it.id, a); } else setV(it.id, st.a[it.id] === i ? undefined : i); return; }
+  const tg = t.closest('.frame .tag'); if (tg) { const fr = tg.closest('.frame'), it = BY[fr.dataset.k], li = +tg.dataset.li, ta = $(`textarea[data-li="${li}"]`, fr);
+    if (!ta.value.trim()) { ta.value = strip(it.lines[li].start) + ' '; ta.dispatchEvent(new Event('input', { bubbles: true })); } ta.focus(); return; }
+  const c = t.closest('.chip'); if (c) { const box = c.closest('.sort'), id = box.dataset.k, ci = +c.dataset.c;
+    if (c.closest('.bin')) { const m = { ...(st.a[id] || {}) }; delete m[ci]; sel = null; setV(id, m); hot(box); return; }
+    const was = c.classList.contains('sel'); $$('.chip.sel').forEach(x => x.classList.remove('sel')); sel = was ? null : { id, ci }; if (!was) c.classList.add('sel'); hot(box); return; }
+  const bin = t.closest('.bin'); if (bin && sel) { const box = bin.closest('.sort'); if (box.dataset.k !== sel.id) return;
+    const m = { ...(st.a[sel.id] || {}) }; m[sel.ci] = +bin.dataset.b; const id = sel.id; sel = null; setV(id, m); hot(box); bump(); }
+});
+function hot(box) { $$('.bin', box).forEach(b => b.classList.toggle('hot', !!sel && sel.id === box.dataset.k)); }
+function bump() { if (navigator.vibrate) try { navigator.vibrate(12); } catch (e) {} }
+
+/* ---------- nút chức năng ---------- */
+const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2600); };
+async function copy(txt) { try { await navigator.clipboard.writeText(txt); return true; } catch (e) {
+  const ta = document.createElement('textarea'); ta.value = txt; document.body.append(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (er) {} ta.remove(); return ok; } }
+function printAs(sz) { document.documentElement.classList.toggle('a5', sz === 'a5'); let s = $('#pgsz'); if (!s) { s = document.createElement('style'); s.id = 'pgsz'; document.head.append(s); }
+  s.textContent = `@page{size:${sz === 'a5' ? 'A5' : 'A4'} portrait;margin:${sz === 'a5' ? '9mm 9mm 10mm' : '12mm 13mm 13mm'}}`; ITEMS.forEach(paint); setTimeout(() => window.print(), 60); }
+let lastLink = '';
+const DO = {
+  send: async () => {
+    const i = st.info || {}; if (!String(i.n || '').trim()) { toast('Please write your name first.'); $('#fN').focus(); return; }
+    const a = st.a; const miss = D.parts.map((p, pi) => p.items.filter(it => !it.optional && !filled(it, a[it.id])).length ? pi + 1 : 0).filter(Boolean);
+    lastLink = BASE + '#r=' + await pack({ v: 1, id: D.id, i, a, t: Date.now() });
+    $('#sLink').value = lastLink; $('#sWarn').textContent = miss.length ? `Part ${miss.join(', ')} has empty answers – you can still submit.` : '';
+    $('#qrOut').innerHTML = ''; $('#bShare').style.display = navigator.share ? '' : 'none'; $('#mSend').classList.add('show'); },
+  copy: async () => toast(await copy(lastLink) ? 'Link copied – paste it in Zalo/Messenger for your teacher.' : 'Please select and copy the link.'),
+  share: async () => { try { await navigator.share({ title: 'Answers · ' + strip(D.title) + ' · ' + (st.info.n || ''), text: 'Worksheet answers of ' + (st.info.n || '') + ':', url: lastLink }); } catch (e) {} },
+  mail: () => { location.href = 'mailto:?subject=' + encodeURIComponent('Worksheet answers · ' + strip(D.title) + ' · ' + (st.info.n || '')) + '&body=' + encodeURIComponent(lastLink); },
+  qr: () => { const box = $('#qrOut'); if (lastLink.length > 2800) { box.innerHTML = '<p class="warn">The link is too long for a QR code – please use Copy link.</p>'; return; }
+    const draw = () => { try { const q = qrcode(0, 'L'); q.addData(lastLink); q.make(); box.innerHTML = q.createSvgTag({ cellSize: 3, margin: 2, scalable: true }); } catch (e) { box.innerHTML = '<p class="warn">Could not make the QR code.</p>'; } };
+    if (window.qrcode) return draw(); box.textContent = 'Making code…'; const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'; s.onload = draw; s.onerror = () => box.innerHTML = '<p class="warn">QR needs internet – please use Copy link.</p>'; document.head.append(s); },
+  a4: () => printAs('a4'), a5: () => printAs('a5'),
+  reset: () => { if (!confirm('Delete all your answers on this phone and start again?')) return; st = { info: {}, a: {} }; save(); doneOnce = new Set(); paintAll(); window.scrollTo(0, 0); },
+  fresh: () => { location.href = BASE; },
+  ans: b => { showAns = !showAns; document.body.classList.toggle('showans', showAns); b.textContent = showAns ? 'Hide answers' : 'Show answers'; },
+  logout: () => { LS.del(KEYK); location.href = BASE; },
+  sum: () => $('#mSum').classList.add('show'),
+  read: async () => {
+    const txt = $('#sumIn').value, ms = [...txt.matchAll(/[#&]r=([zj][A-Za-z0-9_-]+)/g)].map(m => m[1]); const rows = [], seen = new Set();
+    for (const m of ms) { try { const r = await unpack(m); if (r.id !== D.id) continue; const key = (r.i?.n || '') + '|' + r.t; if (seen.has(key)) continue; seen.add(key); rows.push({ r, m, g: gradeAll(r.a || {}) }); } catch (e) {} }
+    rows.sort((x, y) => String(x.r.i?.l || '').localeCompare(y.r.i?.l || '') || String(x.r.i?.n || '').localeCompare(y.r.i?.n || '', 'vi'));
+    SUM = rows; const ph = D.parts.map((p, pi) => `<th>P${pi + 1}</th>`).join('');
+    $('#sumOut').innerHTML = rows.length ? `<p class="small">${rows.length} submissions · scores are keyword hints – check the writing yourself.</p><div style="overflow-x:auto"><table class="sumtb"><tr><th>#</th><th>Name</th><th>Class</th><th>Team</th>${ph}<th>Total</th><th>Submitted at</th><th></th></tr>` +
+      rows.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.r.i?.n)}</td><td>${esc(x.r.i?.l)}</td><td>${esc(x.r.i?.g)}</td>${x.g.parts.map(p => `<td class="n">${p.max ? p.got : ''}</td>`).join('')}<td class="n">${x.g.got}/${x.g.max}</td><td>${new Date(x.r.t).toLocaleString('vi-VN')}</td><td><a href="${BASE}#r=${x.m}" target="_blank" rel="noopener">Xem</a></td></tr>`).join('') + '</table></div>'
+      : '<p class="warn">No valid result links for this worksheet.</p>';
+    $('#bCsv').style.display = rows.length ? '' : 'none'; },
+  csv: () => { const head = ['STT', 'Name', 'Class', 'Team', ...D.parts.map((p, i) => 'Part ' + (i + 1)), 'Total', 'Max', 'Submitted at', 'Link'];
+    const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+    const body = SUM.map((x, i) => [i + 1, x.r.i?.n, x.r.i?.l, x.r.i?.g, ...x.g.parts.map(p => p.got), x.g.got, x.g.max, new Date(x.r.t).toLocaleString('vi-VN'), BASE + '#r=' + x.m].map(q).join(','));
+    const blob = new Blob(['﻿' + [head.map(q).join(','), ...body].join('\r\n')], { type: 'text/csv' }); const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = D.id + '-ket-qua.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+};
+let SUM = [];
+
+/* ---------- đáp án (GV) ---------- */
+function fillAnswers() {
+  ITEMS.forEach(it => { const k = K[it.id], box = $(`.it[data-id="${it.id}"] .ans`); if (!k || !box) return; let h = k.ans || '';
+    if (!h && k.ok !== undefined) h = (Array.isArray(k.ok) ? k.ok : [k.ok]).map(i => it.opts[i]).join(' · ');
+    if (!h && k.fa && it.type === 'fill') h = it.tpl.replace(/\[\[(\d+)\]\]/g, (m, n) => { const x = k.fa[n - 1]; return '<b>' + (Array.isArray(x) ? x[0] : x) + '</b>'; });
+    if (!h && k.fa && it.type === 'back') h = it.steps.map((s, i) => `${'①②③④⑤⑥'[i]} <b>${Array.isArray(k.fa[i]) ? k.fa[i][0] : k.fa[i]}</b>`).join(' · ') + '<br>→ <b>' + it.steps.map((s, i) => Array.isArray(k.fa[i]) ? k.fa[i][0] : k.fa[i]).reverse().join(' ') + '</b>';
+    if (!h && k.mp) h = it.left.map((l, i) => `${strip(l)} → <b>${'ⓐⓑⓒⓓⓔⓕⓖⓗ'[k.mp[i]]}</b>`).join(' · ');
+    if (!h && k.eq) h = '<b>' + (Array.isArray(k.eq) ? k.eq[0] : k.eq) + '</b>';
+    if (k.bins) h += '<ul>' + it.bins.map((b, bi) => `<li><b>${b}:</b> ${it.chips.map((c, ci) => k.bins[ci] === bi ? String.fromCharCode(65 + ci) + '. ' + c : '').filter(Boolean).join('; ')}</li>`).join('') + '</ul>';
+    if (k.kw) h += `<div style="font-size:12px;color:var(--mute);margin-top:4px">Auto-score by keywords: ${k.kw.map(w => Array.isArray(w) ? w.join(' / ') : w).join(' · ')}${k.need && k.need < k.kw.length ? ` (need ${k.need})` : ''}</div>`;
+    if (k.note) h += `<div class="tnote"><b>Teacher note</b> ${k.note}</div>`;   // chỉ có trong bản GV (…/gv/)
+    box.innerHTML = h; });
+  D.parts.forEach(p => { const g = K['_p_' + p.id], box = $(`#${p.id} .gvnote`); if (g && box) box.innerHTML = '<b>Teacher guide</b>' + g; });
+}
+function modeBar() {
+  const b = $('#modeBar'); const i = RES ? RES.i || {} : {};
+  const who = RES ? `<span>Answers of <b>${esc(i.n || '(no name)')}</b> · ${esc(i.l || '')} · ${esc(i.g || '')} · ${RES.t ? new Date(RES.t).toLocaleString('vi-VN') : ''}</span>` : '';
+  if (OPEN && !document.body.classList.contains('gv')) b.innerHTML = `<b>ANSWER KEY VERSION</b>${who || '<span>· answers under each question để em tự đối chiếu</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Hide answers</button>${RES ? '<button class="b sm" data-do="fresh">Blank worksheet</button>' : ''}`;
+  else if (K) b.innerHTML = `<b>TEACHER MODE</b>${who || '<span>· answers under each question</span>'}${RES ? '<b id="gTot"></b>' : ''}<button class="b sm" data-do="ans">Hide answers</button><button class="b sm" data-do="sum">Collect results</button>${RES ? '<button class="b sm" data-do="fresh">Blank worksheet</button>' : ''}<button class="b sm" data-do="logout">Exit teacher mode</button>`;
+  else if (RES) b.innerHTML = `<b>SUBMITTED</b>${who}<button class="b sm" data-do="fresh">Open the worksheet</button>`;
+  else if (D.gv) b.innerHTML = '<b>TEACHER EDITION</b><span>· Open with your teacher link (#gv=…) to see answers and teaching notes.</span>';
+}
+
+/* ---------- pháo giấy ---------- */
+function confetti() { if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; const c = document.createElement('canvas'); c.className = 'cf'; document.body.append(c);
+  const x = c.getContext('2d'); c.width = innerWidth; c.height = innerHeight; const col = ['#D99B26', '#9E4733', '#1E3F20', '#E2ECE0', '#FCF3CF'];
+  const P = Array.from({ length: 90 }, () => ({ x: innerWidth / 2, y: innerHeight * .35, vx: (Math.random() - .5) * 14, vy: Math.random() * -12 - 3, s: Math.random() * 7 + 4, c: col[Math.random() * 5 | 0], r: Math.random() * 6 }));
+  let f = 0; (function step() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.vy += .35; p.x += p.vx; p.y += p.vy; p.r += .2; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); x.restore(); });
+    if (++f < 110) requestAnimationFrame(step); else c.remove(); })(); }
+
+/* ---------- khởi động ---------- */
+(async () => {
+  render();
+  let k = H.get('gv') || LS.get(KEYK, null);
+  if (k && ENC && !OPEN && /[‐-―−]/.test(k)) {   // app chat/Word hay đổi “--” thành “—”/“–”: thử các cách khôi phục để khóa bắt đầu bằng - vẫn mở được
+    for (const c of [k.replace(/—/g, '--').replace(/[‐-―−]/g, '-'), k.replace(/[‐-―−]/g, '--'), k.replace(/[‐-―−]/g, '-')]) { try { await unlock(c); k = c; break; } catch (e) {} } }
+  if (OPEN) { K = JSON.parse(new TextDecoder().decode(b64u.dec(ENC.slice(5)))); document.body.classList.add('open', 'showans'); fillAnswers();
+    if (k) { LS.set(KEYK, k); document.body.classList.add('gv'); } }
+  else if (k && ENC) { try { K = await unlock(k); LS.set(KEYK, k); document.body.classList.add('gv', 'showans'); fillAnswers(); } catch (e) { if (H.get('gv')) toast('Wrong teacher key.'); LS.del(KEYK); } }
+  if (H.get('r')) { try { RES = await unpack(H.get('r')); document.body.classList.add('res'); $('#app').classList.add('ro'); $('.info').classList.add('ro');
+    if (RES.id !== D.id) toast('This result link is for another worksheet.'); } catch (e) { toast('This result link is broken.'); } }
+  if (H.get('gv')) history.replaceState(null, '', location.pathname + (H.get('r') ? '#r=' + H.get('r') : ''));
+  if (D.gv) document.body.classList.add('gvpage');   // bản GV (…/gv/): không có nút Submit
+  modeBar(); paintAll(); booted = true;
+  $$('.actions [data-stud]').forEach(x => x.style.display = (RES || D.gv) ? 'none' : '');
+  const p = H.get('p'); if (p && $('#' + p)) setTimeout(() => $('#' + p).scrollIntoView({ behavior: 'smooth' }), 200);
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { const pi = D.parts.findIndex(x => x.id === en.target.id); $$('.nav a').forEach((a, i) => a.classList.toggle('cur', i === pi)); } }), { rootMargin: '-40% 0px -55% 0px' });
+  $$('.part').forEach(s => io.observe(s));
+  addEventListener('beforeprint', () => ITEMS.forEach(paint));
+})();
+})();
+</script>
+</body>
+</html>
